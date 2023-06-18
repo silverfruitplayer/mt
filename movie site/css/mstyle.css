@@ -283,7 +283,7 @@ h1 span{
 }
 
 .tv .list:nth-child(5)::before{
-    content: 'the last dance';
+    content: 'the last dance lol';
 }
 
 .tv {
