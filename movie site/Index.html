@@ -65,6 +65,10 @@
     const swiper = new Swiper('#video-carousel', {
       slidesPerView: 1,
       loop: true,
+      autoplay: {
+        delay: 5000, // Delay between slides in milliseconds (5 seconds in this example)
+        disableOnInteraction: false, // Continue autoplay even when user interacts with the carousel
+      },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -73,6 +77,7 @@
   </script>
 </body>
 </html>
+
 
 <head>
     <meta charset="UTF-8">
