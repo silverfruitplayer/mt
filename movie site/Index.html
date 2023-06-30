@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="path_to_videojs/video-js.css" rel="stylesheet">
+  <script src="path_to_videojs/video.js"></script>
+</head>
+<head>
   <style>
     #video-container {
       position: relative;
@@ -22,12 +26,14 @@
   </style>
 </head>
 <body>
-  <div id="video-container">
-    <div id="video-overlay"></div>
-    <video controls>
-      <source src="https://stream.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe.m3u8" type="application/x-mpegURL">
-    </video>
-  </div>
+  <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360">
+    <source src="https://live.atresmediainternacional.com/ATRESMEDIA/a3cine-index.m3u8" type="application/x-mpegURL">
+  </video>
+
+  <script>
+    var player = videojs('videoPlayer');
+    player.play();
+  </script>
 </body>
 </html>
 
