@@ -80,6 +80,50 @@
 </html>
 
 <head>
+  <style>
+    .movie-thumbnail {
+      width: 200px;
+      height: 300px;
+      background-color: #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .movie-player {
+      width: 400px;
+      height: 300px;
+      background-color: #ccc;
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="movie-thumbnail" onclick="playMovie('movie1.mp4')">Movie 1 Thumbnail</div>
+  <div class="movie-thumbnail" onclick="playMovie('movie2.mp4')">Movie 2 Thumbnail</div>
+  <div class="movie-thumbnail" onclick="playMovie('movie3.mp4')">Movie 3 Thumbnail</div>
+
+  <div class="movie-player">
+    <video id="video-player" controls></video>
+  </div>
+
+  <script>
+    function playMovie(movieUrl) {
+      const videoPlayer = document.getElementById('video-player');
+      const moviePlayer = document.querySelector('.movie-player');
+
+      videoPlayer.src = movieUrl;
+      moviePlayer.style.display = 'block';
+      videoPlayer.play();
+    }
+  </script>
+</body>
+</html>
+
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
