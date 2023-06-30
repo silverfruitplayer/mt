@@ -2,6 +2,8 @@
 <html>
 <head>
   <script type="module" src="https://unpkg.com/hls-video-element@0.0"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <head>
   <style>
@@ -13,13 +15,23 @@
       padding-top: 20px;
     }
 
+    #video-carousel {
+      width: 100%;
+    }
+
+    #video-carousel .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     #video-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.8); /* Adjust the opacity (last value) as needed */
+      background-color: rgba(0, 0, 0, 0); /* Adjust the opacity (last value) as needed */
       pointer-events: none; /* Allows clicks to pass through the overlay */
       z-index: 1;
     }
@@ -29,13 +41,36 @@
       height: 100%;
       object-fit: contain; /* Adjust the object-fit property as needed */
     }
-    
   </style>
 </head>
 <body>
-   <div id="video-container">
-     <hls-video controls autoplay src="https://appletree-mytime-samsungbrazil.amagi.tv/playlist.m3u8"></hls-video>
+  <div id="video-container">
+    <div id="video-carousel" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://appletree-mytime-samsungbrazil.amagi.tv/playlist.m3u8"></hls-video>
+        </div>
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://simultv.s.llnwi.net/o058/Mythos/interlink.m3u8"></hls-video>
+        </div>
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://appletree-mytime-samsungbrazil.amagi.tv/playlist.m3u8"></hls-video>
+        </div>
+        <!-- Add more video slides as needed -->
+      </div>
+    </div>
   </div>
+
+  <script>
+    const swiper = new Swiper('#video-carousel', {
+      slidesPerView: 1,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
 </body>
 </html>
 
