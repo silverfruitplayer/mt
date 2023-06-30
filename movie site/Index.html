@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script type="module" src="https://unpkg.com/hls-video-element@0.0"></script>
+</head>
+<head>
   <style>
     #video-container {
       position: relative;
@@ -22,10 +25,7 @@
   </style>
 </head>
 <body>
-  <div id="video-container">
-    <div id="video-overlay"></div>
-      <hls-video controls autoplay src="https://appletree-mytime-samsungbrazil.amagi.tv/playlist.m3u8"></hls-video>
-  </div>
+    <hls-video controls autoplay src="https://appletree-mytime-samsungbrazil.amagi.tv/playlist.m3u8"></hls-video>
 </body>
 </html>
 
