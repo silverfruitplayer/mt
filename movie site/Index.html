@@ -123,9 +123,45 @@
             </script>
             <div class="flow">              
                 <span class="material-icons">tv </span>
-                <h2>Tv</h2>
                 <span class="material-icons dropdown-arrow">arrow_drop_down</span>
-            </div>
+                <h2>Tv</h2>
+                <div class="dropdown-content">
+                  <span class="dropdown-option">Movies</span>
+                  <span class="dropdown-option">Entertainment</span>
+                  <span class="dropdown-option">Other Section</span>
+                </div>
+              <style>          
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100px;
+  padding: 5px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-option {
+  display: block;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  background-color: #f2f2f2;
+}
+</style>  
+            </div>            
             <script>
               function sexy() {
               // Open a new window or perform any desired action
@@ -164,6 +200,7 @@
               window.open('./milf.html', '_blank');
               }
             </script>
+
 
 </body>
 </html>
