@@ -7,17 +7,15 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
-      background-image: url('https://sm.pcmag.com/t/pcmag_uk/photo/default/bbfc-uk-isp-adult-content-filter_zgby.1920.png');
+      background-image: url('https://sm.pcmag.com/t/pcmag_uk/photo/default/bbfc-uk-isp-adult-content-filter_zgby.1920.png.jpg');
       background-size: cover;
+      background-position: center;
       font-family: 'Roboto', sans-serif;
     }
 
     .gallery {
       display: flex;
       flex-wrap: wrap;
-      
-      background-position: center;
       justify-content: center;
     }
 
@@ -41,6 +39,29 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      color: #ffffff;
+      font-size: 24px;
     }
   </style>
 </head>
@@ -93,18 +114,22 @@
       }
 
       const modal = document.createElement('div');
-      modal.style.position = 'fixed';
-      modal.style.top = '0';
-      modal.style.left = '0';
-      modal.style.width = '100%';
-      modal.style.height = '100%';
-      modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-      modal.style.display = 'flex';
-      modal.style.justifyContent = 'center';
-      modal.style.alignItems = 'center';
+      modal.className = 'modal';
+
+      const closeButton = document.createElement('button');
+      closeButton.className = 'close-button material-icons';
+      closeButton.innerHTML = 'close';
+      closeButton.addEventListener('click', () => {
+        closeModal(modal);
+      });
 
       modal.appendChild(videoElement);
+      modal.appendChild(closeButton);
       document.body.appendChild(modal);
+    }
+
+    function closeModal(modal) {
+      document.body.removeChild(modal);
     }
   </script>
 </body>
