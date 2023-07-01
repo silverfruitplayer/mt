@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Video Gallery</title>
+  <title>XXX Channels</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-image: url('https://sm.pcmag.com/t/pcmag_uk/photo/default/bbfc-uk-isp-adult-content-filter_zgby.1920.png');
+      background-image: url('path/to/your/image.jpg');
       background-size: cover;
       background-position: center;
       font-family: 'Roboto', sans-serif;
@@ -52,17 +52,18 @@
 
     .close-button {
       position: absolute;
-      top: 50%;
+      top: 10px;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       padding: 8px;
       background-color: rgba(0, 0, 0, 0.7);
       color: #ffffff;
-      border-radius: 65%;
+      border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 1;
     }
   </style>
 </head>
@@ -137,8 +138,8 @@
         closeModal(modal, videoElement);
       });
 
-      modal.appendChild(videoElement);
       modal.appendChild(closeButton);
+      modal.appendChild(videoElement);
       document.body.appendChild(modal);
     }
 
