@@ -103,6 +103,8 @@
     function playVideo(url) {
       const videoElement = document.createElement('video');
       videoElement.controls = true;
+      videoElement.style.maxWidth = '50%';
+      videoElement.style.maxHeight = '50%';
 
       if (Hls.isSupported()) {
         const hls = new Hls();
