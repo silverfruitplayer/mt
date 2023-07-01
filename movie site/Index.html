@@ -1,55 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<head>
   <style>
-    .carousel {
-      border-radius: 20px;
-      overflow: hidden;
+    /* Material Theming */
+    :root {
+      --swiper-theme-color: #2196f3; /* Set your primary color here */
+      --swiper-background-color: #fff; /* Set your background color here */
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #image-container {
+      width: 50%; /* Adjust the width as needed */
+      max-width: 800px; /* Set the desired maximum width of the carousel */
+      margin-top: 20px;
+    }
+
+    #image-carousel {
+      width: 100%;
+      height: 100%;
+    }
+
+    #image-carousel .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px; /* Rounded corners */
+      overflow: hidden; /* Hide overflow to ensure rounded corners are visible */
+      perspective: 800px; /* Add perspective for the 3D effect */
+    }
+
+    #image-carousel .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Adjust object-fit property as needed */
+      transform: translateZ(-100px) rotateY(0deg); /* Apply the 3D rotation */
+      transition: transform 0.5s; /* Add transition for smooth animation */
+    }
+
+    #image-carousel .swiper-slide-active img {
+      transform: translateZ(0) rotateY(0deg); /* Bring the active slide to the front */
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="image-carousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#image-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#image-carousel" data-slide-to="1"></li>
-        <li data-target="#image-carousel" data-slide-to="2"></li>
-      </ol>
-
-      <!-- Slides -->
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCMLbl1KM9mLpxAepWS5n3bZPjcquvcn-OZreTiqFAJ0lRvEHECTA50qk&usqp=CAU" alt="i1">
+  <div id="image-container">
+    <div id="image-carousel" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCMLbl1KM9mLpxAepWS5n3bZPjcquvcn-OZreTiqFAJ0lRvEHECTA50qk&usqp=CAU" alt="Image 1">
         </div>
-        <div class="carousel-item">
+        <div class="swiper-slide">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLzIRqaQdcdjhR_H7pE-_38kiCvlBifHXu7W91KsMjeTVgclZZZMKExa2N4STNk3L_dak&usqp=CAU" alt="Image 2">
         </div>
-        <div class="carousel-item">
+        <div class="swiper-slide">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ_Meq7eeGDOpujXKA2X5YgHpwHUg1W0se62JMnXMYAVLafhvLZSqB9fA&usqp=CAU" alt="Image 3">
         </div>
       </div>
-
-      <!-- Controls -->
-      <a class="carousel-control-prev" href="#image-carousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#image-carousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    const swiper = new Swiper('#image-carousel', {
+      slidesPerView: 1,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
 </body>
 </html>
-
 
 <head>
     <meta charset="UTF-8">
