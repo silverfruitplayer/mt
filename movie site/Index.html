@@ -166,15 +166,20 @@
                  <div class="dropdown-content">
                     <div class="dropdown-option">Movies</div>
                     <div class="dropdown-option">Entertainment</div>
-                    <div class="dropdown-option" onclick="sexy()">XXX Section (18+)</div>
+                    <div class="dropdown-option" onclick="authenticate()">XXX Section (18+)</div>
                  </div>
               </div>
             </body>           
             <script>
-              function sexy() {
-              // Open a new window or perform any desired action
-              window.open('./huh.html', '_blank');
-              }
+              function authenticate() {
+                var password = prompt("Entering 18+ Area! Please Enter password:")
+                if (password === "Candella") {
+                  window.open('./huh.html', '_blank');
+                }
+                else {
+                  alert("Incorrect password. Try again.");
+                }  
+              }  
             </script> 
             <p>account</p>
             <div class="flow">
