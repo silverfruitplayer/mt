@@ -9,7 +9,6 @@
       padding: 0;
       background-image: url('https://sm.pcmag.com/t/pcmag_uk/photo/default/bbfc-uk-isp-adult-content-filter_zgby.1920.png');
       background-size: cover;
-      background-position: center;
       font-family: 'Roboto', sans-serif;
     }
 
@@ -20,8 +19,8 @@
     }
 
     .thumbnail {
-      width: 200px;
-      height: 150px;
+      width: 300px;
+      height: 200px;
       margin: 10px;
       cursor: pointer;
       background-color: #ffffff;
@@ -29,6 +28,9 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       transition: transform 0.3s ease;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .thumbnail:hover {
@@ -41,31 +43,11 @@
       object-fit: cover;
     }
 
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .close-button {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
+    .thumbnail .title {
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
       color: #ffffff;
-      font-size: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -89,6 +71,11 @@
           const thumbnailImage = document.createElement('img');
           thumbnailImage.src = video.thumbnail;
           thumbnail.appendChild(thumbnailImage);
+
+          const title = document.createElement('div');
+          title.className = 'title';
+          title.textContent = video.title;
+          thumbnail.appendChild(title);
 
           gallery.appendChild(thumbnail);
         });
@@ -118,22 +105,18 @@
       }
 
       const modal = document.createElement('div');
-      modal.className = 'modal';
-
-      const closeButton = document.createElement('button');
-      closeButton.className = 'close-button material-icons';
-      closeButton.innerHTML = 'close';
-      closeButton.addEventListener('click', () => {
-        closeModal(modal);
-      });
+      modal.style.position = 'fixed';
+      modal.style.top = '0';
+      modal.style.left = '0';
+      modal.style.width = '100%';
+      modal.style.height = '100%';
+      modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+      modal.style.display = 'flex';
+      modal.style.justifyContent = 'center';
+      modal.style.alignItems = 'center';
 
       modal.appendChild(videoElement);
-      modal.appendChild(closeButton);
       document.body.appendChild(modal);
-    }
-
-    function closeModal(modal) {
-      document.body.removeChild(modal);
     }
   </script>
 </body>
