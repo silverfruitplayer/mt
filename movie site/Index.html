@@ -183,8 +183,12 @@
                 if (password === "Candella") {
                   localStorage.removeItem('attempts');
                   localStorage.removeItem('lastAttemptTime');
-                  window.open('./huh.html', '_blank');
-                  
+                  setTimeout(function() {
+                    window.open('./huh.html', '_blank');
+                  }, 0);
+                  inactivityTimeout = setTimeout(function() {
+                    window.close();
+                  }, 5 * 1000);                  
                 } else {
                    attempts = attempts ? parseInt(attempts) + 1 : 1;
                    lastAttemptTime = Date.now();
