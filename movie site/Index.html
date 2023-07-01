@@ -176,8 +176,8 @@
                 var attempts = localStorage.getItem('attempts');
                 var lastAttemptTime = localStorage.getItem('lastAttemptTime');
                 var maxAttempts = 3;
-                if (attempts >= maxAttempts && Date.now() - lastAttemptTime < 24 * 60 * 60 * 1000) {
-                  alert("Access blocked. Try again after 24 hours.");
+                if (attempts >= maxAttempts && Date.now() - lastAttemptTime < 5 * 1000) {
+                  alert("Access blocked. Try again after 5s.");
                   return;
                 }  
                 if (password === "Candella") {
@@ -194,7 +194,7 @@
                    if (attemptsLeft > 0) {
                      alert("Incorrect password, Be Careful! " + attemptsLeft + " attempts left.");
                    } else {                    
-                     alert("Incorrect password. Access blocked for 24 hours.");
+                     alert("Incorrect password. Access blocked for 5s.");
                    }  
                   }  
               }  
