@@ -270,6 +270,7 @@ h1 span{
 
 .tv .list:nth-child(1)::before{
     content: 'money heist';
+    cursor: pointer;
 }
 .tv .list:nth-child(2)::before{
     content: 'westworld';
