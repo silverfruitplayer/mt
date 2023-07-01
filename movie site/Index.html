@@ -121,16 +121,55 @@
               window.open('https://www.google.com', '_blank');
               }
             </script>
-            <div class="flow">              
-                <span class="material-icons">tv </span>
-                <span class="material-icons dropdown-arrow">arrow_drop_down</span>
-                <h2>Tv</h2>
-                <div class="dropdown-content">
-                  <span class="dropdown-option">Movies</span>
-                  <span class="dropdown-option">Entertainment</span>
-                  <span class="dropdown-option">Other Section</span>
-                </div>            
-            </div>            
+            <head>
+               <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+               <style>
+                 .dropdown {
+                     position: relative;
+                     display: inline-block;
+                 }
+                   
+                 .dropdown .dropdown-arrow {
+                     cursor: pointer;
+                 }
+               
+                 .dropdown .dropdown-content {
+                     display: none;
+                     position: absolute;
+                     top: 100%;
+                     left: 0;
+                     width: 100%;
+                     background-color: #ffffff;
+                     padding: 5px;
+                     border-radius: 5px;
+                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                 }
+               
+                 .dropdown:hover .dropdown-content {
+                     display: block;
+                 }   
+                   
+                 .dropdown-option {
+                     padding: 5px;
+                     cursor: pointer;
+                 }   
+                     
+                 .dropdown-option:hover {
+                     background-color: #f2f2f2;
+                 }
+               </style>
+            </head>
+            <body>
+              <div class="flow dropdown">
+                 <span class="material-icons dropdown-arrow">arrow_drop_down</span>
+                 <h2>Tv</h2>
+                 <div class="dropdown-content">
+                    <div class="dropdown-option">Movies</div>
+                    <div class="dropdown-option">Entertainment</div>
+                    <div class="dropdown-option">Other Section</div>
+                 </div>
+              </div>
+            </body>           
             <script>
               function sexy() {
               // Open a new window or perform any desired action
