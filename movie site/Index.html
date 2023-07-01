@@ -1,6 +1,6 @@
-<!DOCTYPE html>
 <html>
 <head>
+  <script type="module" src="https://unpkg.com/hls-video-element@0.0"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -10,69 +10,71 @@
     /* Material Theming */
     :root {
       --swiper-theme-color: #2196f3; /* Set your primary color here */
-      --swiper-background-color: #000000; /* Set your background color here */
+      --swiper-background-color: #fff; /* Set your background color here */
     }
 
-    body {
+    #video-container {
+      position: relative;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 60vh;
-      margin: 0;
+      align-items: flex-start;
+      padding-top: 20px;
     }
 
-    #image-container {
-      width: 20%; /* Adjust the width as needed */
-      max-width: 800px; /* Set the desired maximum width of the carousel */
-      margin-top: 20px;
-    }
-
-    #image-carousel {
+    #video-carousel {
       width: 100%;
-      height: 100%;
     }
 
-    #image-carousel .swiper-slide {
+    #video-carousel .swiper-slide {
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 20px; /* Rounded corners */
-      overflow: hidden; /* Hide overflow to ensure rounded corners are visible */
-      perspective: 800px; /* Add perspective for the 3D effect */
+      perspective: 1000px; /* Add perspective for the 3D effect */
     }
 
-    #image-carousel .swiper-slide img {
+    #video-carousel .swiper-slide hls-video {
+      max-width: 80%;
+    }
+
+    #video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Adjust object-fit property as needed */
-      transform: translateZ(-100px) rotateY(0deg); /* Apply the 3D rotation */
-      transition: transform 0.5s; /* Add transition for smooth animation */
+      background-color: rgba(0, 0, 0, 0.2); /* Adjust the overlay opacity as needed */
+      pointer-events: none;
+      z-index: 1;
     }
 
-    #image-carousel .swiper-slide-active img {
-      transform: translateZ(0) rotateY(0deg); /* Bring the active slide to the front */
+    #video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a box shadow for a 3D effect */
+      transform: translateZ(0); /* Prevent video flickering in Safari */
     }
   </style>
 </head>
 <body>
-  <div id="image-container">
-    <div id="image-carousel" class="swiper-container">
+  <div id="video-container">
+    <div id="video-carousel" class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCMLbl1KM9mLpxAepWS5n3bZPjcquvcn-OZreTiqFAJ0lRvEHECTA50qk&usqp=CAU" alt="Image 1">
+          <hls-video controls autoplay src="https://appletree-mytime-samsungbrazil.amagi.tv/playlist.m3u8"></hls-video>
         </div>
         <div class="swiper-slide">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLzIRqaQdcdjhR_H7pE-_38kiCvlBifHXu7W91KsMjeTVgclZZZMKExa2N4STNk3L_dak&usqp=CAU" alt="Image 2">
+          <hls-video controls autoplay src="https://bl.uma.media/live/317805/HLS/4614144_3,2883584_2,1153024_1/1613019214/3754dbee773afc02014172ca26d3bb79/playlist.m3u8"></hls-video>
         </div>
         <div class="swiper-slide">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ_Meq7eeGDOpujXKA2X5YgHpwHUg1W0se62JMnXMYAVLafhvLZSqB9fA&usqp=CAU" alt="Image 3">
+          <hls-video controls autoplay src="https://6n3yogbnd9ok-hls-live.5centscdn.com/threetamil/d0dbe915091d400bd8ee7f27f0791303.sdp/index.m3u8"></hls-video>
         </div>
       </div>
     </div>
   </div>
   <script>
-    const swiper = new Swiper('#image-carousel', {
+    const swiper = new Swiper('#video-carousel', {
       slidesPerView: 1,
       loop: true,
       autoplay: {
@@ -87,6 +89,7 @@
   </script>
 </body>
 </html>
+
 
 <head>
     <meta charset="UTF-8">
