@@ -7,7 +7,7 @@
     body {
       margin: 0;
       padding: 0;
-      background-image: url('https://sm.pcmag.com/t/pcmag_uk/photo/default/bbfc-uk-isp-adult-content-filter_zgby.1920.png');
+      background-image: url('path/to/your/image.jpg');
       background-size: cover;
       background-position: center;
       font-family: 'Roboto', sans-serif;
@@ -48,6 +48,27 @@
       background-color: rgba(0, 0, 0, 0.7);
       color: #ffffff;
       font-size: 16px;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-button:hover {
+      opacity: 1;
     }
   </style>
 </head>
@@ -115,8 +136,33 @@
       modal.style.justifyContent = 'center';
       modal.style.alignItems = 'center';
 
+      const closeButton = document.createElement('div');
+      closeButton.className = 'close-button material-icons';
+      closeButton.textContent = 'close';
+      closeButton.addEventListener('click', () => {
+        closeModal(modal, videoElement);
+      });
+
       modal.appendChild(videoElement);
+      modal.appendChild(closeButton);
       document.body.appendChild(modal);
+
+      // Fade-in effect
+      setTimeout(() => {
+        modal.style.opacity = '1';
+      }, 100);
+    }
+
+    function closeModal(modal, videoElement) {
+      modal.style.opacity = '0';
+
+      // Delay removal of the modal to allow for the fade-out effect
+      setTimeout(() => {
+        modal.remove();
+        videoElement.pause();
+        videoElement.removeAttribute('src');
+        videoElement.load();
+      }, 300);
     }
   </script>
 </body>
