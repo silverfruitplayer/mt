@@ -2,81 +2,51 @@
 <html>
 <head>
   <title>Video Gallery</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Add Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Add Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    .thumbnail-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
     .thumbnail {
       width: 200px;
       height: 150px;
       margin: 10px;
       cursor: pointer;
-      position: relative;
     }
 
-    .thumbnail-image {
+    .thumbnail img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 4px;
+      border-radius: 8px;
     }
 
-    .play-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      font-size: 48px;
-      opacity: 0;
-      transition: opacity 0.2s ease-in-out;
+    .modal {
+      max-width: 800px;
+      padding: 20px;
     }
 
-    .thumbnail:hover .play-icon {
-      opacity: 1;
+    .modal-content {
+      padding: 0;
     }
 
-    #modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    #modal video {
-      width: 80%;
-      height: auto;
-    }
-
-    #modal .close-button {
+    .modal-close {
       position: absolute;
       top: 10px;
       right: 10px;
       color: #fff;
-      font-size: 20px;
+      font-size: 24px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div id="gallery" class="row"></div>
+    <h3 class="center-align">Video Gallery</h3>
+    <div class="row" id="gallery"></div>
   </div>
 
-  <div id="modal"></div>
-
+  <!-- Add Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
@@ -86,22 +56,22 @@
         const gallery = document.getElementById('gallery');
 
         data.videos.forEach(video => {
-          const thumbnailContainer = document.createElement('div');
-          thumbnailContainer.className = 'col s12 m6 l4';
           const thumbnail = document.createElement('div');
-          thumbnail.className = 'thumbnail';
-          thumbnail.style.backgroundImage = `url(${video.thumbnail})`;
-          const playIcon = document.createElement('i');
-          playIcon.className = 'material-icons play-icon';
-          playIcon.innerText = 'play_circle_outline';
-          thumbnail.appendChild(playIcon);
+          thumbnail.className = 'col s12 m6 l4';
+          thumbnail.innerHTML = `
+            <div class="card thumbnail">
+              <div class="card-image">
+                <img src="${video.thumbnail}">
+                <a class="btn-floating halfway-fab waves-effect waves-light red" onclick="openModal('${video.url}')"><i class="material-icons">play_arrow</i></a>
+              </div>
+              <div class="card-content">
+                <span class="card-title">${video.title}</span>
+                <p>${video.description}</p>
+              </div>
+            </div>
+          `;
 
-          thumbnail.addEventListener('click', () => {
-            openModal(video.url);
-          });
-
-          thumbnailContainer.appendChild(thumbnail);
-          gallery.appendChild(thumbnailContainer);
+          gallery.appendChild(thumbnail);
         });
       })
       .catch(error => {
@@ -109,10 +79,44 @@
       });
 
     function openModal(url) {
-      const modal = document.getElementById('modal');
-      modal.innerHTML = `
-        <video controls>
-          <source src="${url}" type="application/x-mpegURL">
-          Your browser does not support the video tag.
-        </video>
-        <span class="close-button" onclick="closeModal()">&times
+      const videoElement = document.createElement('video');
+      videoElement.controls = true;
+
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(videoElement);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          videoElement.play();
+        });
+      } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+        videoElement.src = url;
+        videoElement.addEventListener('loadedmetadata', () => {
+          videoElement.play();
+        });
+      } else {
+        console.error('HLS is not supported');
+      }
+
+      const modalContent = document.createElement('div');
+      modalContent.className = 'modal-content';
+      modalContent.appendChild(videoElement);
+
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.appendChild(modalContent);
+      modal.innerHTML += '<i class="material-icons modal-close">close</i>';
+
+      const body = document.querySelector('body');
+      body.appendChild(modal);
+
+      const instance = M.Modal.init(modal);
+      instance.open();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      M.AutoInit();
+    });
+  </script>
+</body>
+</html>
