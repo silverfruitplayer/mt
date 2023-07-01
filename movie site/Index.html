@@ -185,9 +185,10 @@
                   localStorage.removeItem('lastAttemptTime');
                   setTimeout(function() {
                     window.open('./huh.html', '_blank');
+                    window.close()
                   }, 0);
                   inactivityTimeout = setTimeout(function() {
-                    window.close();
+                    window.close('./huh.html', '_blank');
                   }, 5 * 1000);                  
                 } else {
                    attempts = attempts ? parseInt(attempts) + 1 : 1;
