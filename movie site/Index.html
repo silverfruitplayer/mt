@@ -23,16 +23,14 @@
     }
 
     #image-container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
+      width: 50%; /* Adjust the width as needed */
       max-width: 800px; /* Set the desired maximum width of the carousel */
       margin-top: 20px;
     }
 
     #image-carousel {
       width: 100%;
+      height: 100%;
     }
 
     #image-carousel .swiper-slide {
@@ -41,14 +39,21 @@
       align-items: center;
       border-radius: 20px; /* Rounded corners */
       overflow: hidden; /* Hide overflow to ensure rounded corners are visible */
+      perspective: 800px; /* Add perspective for the 3D effect */
     }
 
     #image-carousel .swiper-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover; /* Adjust object-fit property as needed */
+      transform: translateZ(-100px) rotateY(0deg); /* Apply the 3D rotation */
+      transition: transform 0.5s; /* Add transition for smooth animation */
     }
-  </style>
+
+    #image-carousel .swiper-slide-active img {
+      transform: translateZ(0) rotateY(0deg); /* Bring the active slide to the front */
+    }
+    </style>
 </head>
 <body>
   <div id="image-container">
