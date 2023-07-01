@@ -181,6 +181,8 @@
                   return;
                 }  
                 if (password === "Candella") {
+                  localStorage.removeItem('attempts');
+                  localStorage.removeItem('lastAttemptTime');
                   window.open('./huh.html', '_blank');
                 } else {
                    attempts = attempts ? parseInt(attempts) + 1 : 1;
@@ -188,6 +190,7 @@
                    localStorage.setItem('attempts', attempts);
                    localStorage.setItem('lastAttemptTime', lastAttemptTime);
                    var attemptsLeft = maxAttempts - attempts;
+                  
                    if (attemptsLeft > 0) {
                      alert("Incorrect password, Be Careful! " + attemptsLeft + " attempts left.");
                    } else {                    
