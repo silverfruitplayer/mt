@@ -2,18 +2,16 @@
 <html>
 <head>
   <title>JW Player Example</title>
-  <script src="https://cdn.jsdelivr.net/jwplayer/8.0.14/jwplayer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jwplayer-video-element@1.0.1/dist/jwplayer-video-element.js"></script>
 </head>
 <body>
   <div id="player"></div>
 
   <script>
-    const player = jwplayer("player").setup({
-      file: "https://bayfiles.com/3492Ldz8z6/BTTH_S5_EP51_mp4",
-      type: "mp4",
-      width: "100%",
-      aspectratio: "16:9",
-    });
+    const player = document.getElementById("player");
+
+    player.load("https://bayfiles.com/3492Ldz8z6/BTTH_S5_EP51_mp4");
+    player.play();
   </script>
 </body>
 </html>
