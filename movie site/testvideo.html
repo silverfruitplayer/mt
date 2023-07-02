@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Video</title>
+</head>
+<body>
+  <h1>Testing 123</h1>
+  
+  <video id="myVideo" controls>
+    <source src="" type="video/mp4">
+  </video>
+
+  <script>
+    function checkBayfilesAvailability() {
+      var bayfilesLink = "https://bayfiles.com/3492Ldz8z6/BTTH_S5_EP51_mp4";
+      var workerEndpoint = "https://mt.ajeynagar846.workers.dev";
+
+      // Make an AJAX request to your worker endpoint
+      // Pass the Bayfiles link as a query parameter
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', workerEndpoint + '?url=' + encodeURIComponent(bayfilesLink), true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var videoURL = JSON.parse(xhr.responseText).videoURL;
+          if (videoURL) {
+            var videoElement = document.getElementById("myVideo");
+            videoElement.src = videoURL;
+          } else {
+            console.log("Failed to fetch video from Bayfiles.");
+          }
+        }
+      };
+      xhr.send();
+    }
+
+    window.addEventListener('load', function() {
+      checkBayfilesAvailability();
+    });
+  </script>
+</body>
+</html>
