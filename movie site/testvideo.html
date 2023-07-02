@@ -1,30 +1,32 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>Video Player</title>
-</head>
-<body>
-  <video controls>
-    <source src="https://rushidhar-bro-osm.herokuapp.com/124412/BTTH+S5+EP51.mp4?hash=ec03bf" type="video/mp4">
-    Some Tag
-  </video>
-</body>
+  <head>
+    <title>&lt;vimeo-video&gt;</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+    />
+    <style>
+      body {
+        min-height: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      vimeo-video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>&lt;vimeo-video&gt;</h1>
+    <br />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/vimeo-video-element@0.2/+esm"
+    ></script>
+    <vimeo-video controls src="https://vimeo.com/648359100"></vimeo-video>
+  </body>
 </html>
-
-
-<script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@1/+esm"></script>
-
-<media-controller>
-  <video
-    slot="media"
-    src="https://rushidhar-bro-osm.herokuapp.com/124412/BTTH+S5+EP51.mp4?hash=ec03bf"
-  </video>
-  <media-control-bar>
-    <media-play-button></media-play-button>
-    <media-mute-button></media-mute-button>
-    <media-volume-range></media-volume-range>
-    <media-time-range></media-time-range>
-    <media-pip-button></media-pip-button>
-    <media-fullscreen-button></media-fullscreen-button>
-  </media-control-bar>
-</media-controller>
