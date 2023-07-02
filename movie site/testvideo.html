@@ -21,7 +21,7 @@
       xhr.open('GET', workerEndpoint + '?url=' + encodeURIComponent(bayfilesLink), true);
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-          var videoURL = JSON.parse(xhr.responseText).videoURL;
+          var videoURL = xhr.responseText;
           if (videoURL) {
             var videoElement = document.getElementById("myVideo");
             videoElement.src = videoURL;
