@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>JW Player Example</title>
-  <script src="https://cdn.jsdelivr.net/npm/jwplayer-video-element@1.0.1/dist/jwplayer-video-element.js"></script>
-</head>
-<body>
-  <div id="player"></div>
+<script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@1/+esm"></script>
 
-  <script>
-    const player = document.getElementById("player");
-
-    player.load("https://bayfiles.com/3492Ldz8z6/BTTH_S5_EP51_mp4");
-    player.play();
-  </script>
-</body>
-</html>
+<media-controller>
+  <video
+    slot="media"
+    src="https://bayfiles.com/3492Ldz8z6/BTTH_S5_EP51_mp4"
+    crossorigin
+  >
+    <track
+      label="thumbnails"
+      default
+      kind="metadata"
+      src="https://image.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/storyboard.vtt"
+    />
+  </video>
+  <media-control-bar>
+    <media-play-button></media-play-button>
+    <media-mute-button></media-mute-button>
+    <media-volume-range></media-volume-range>
+    <media-time-range></media-time-range>
+    <media-pip-button></media-pip-button>
+    <media-fullscreen-button></media-fullscreen-button>
+  </media-control-bar>
+</media-controller>
