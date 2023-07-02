@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@1/+esm"></script>
-
-<media-controller>
-  <video
-    slot="media"
-    src="https://cdn-149.bayfiles.com/3492Ldz8z6/a3655b82-1688275380/BTTH+S5+EP51.mp4"
-    crossorigin
-  >
-    <track
-      label="thumbnails"
-      default
-      kind="metadata"
-      src="https://image.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/storyboard.vtt"
-    />
+<html>
+<head>
+  <title>Video.js Example</title>
+  <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet">
+  <script src="https://vjs.zencdn.net/7.14.3/video.js"></script>
+</head>
+<body>
+  <video id="myVideo" class="video-js vjs-default-skin" controls>
+    <source src="https://cdn-149.bayfiles.com/3492Ldz8z6/a3655b82-1688275380/BTTH+S5+EP51.mp4" type="video/mp4">
   </video>
-  <media-control-bar>
-    <media-play-button></media-play-button>
-    <media-mute-button></media-mute-button>
-    <media-volume-range></media-volume-range>
-    <media-time-range></media-time-range>
-    <media-pip-button></media-pip-button>
-    <media-fullscreen-button></media-fullscreen-button>
-  </media-control-bar>
-</media-controller>
+
+  <script>
+    var player = videojs('myVideo');
+  </script>
+</body>
+</html>
