@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+      href="https://cdn.plyr.io/3.6.7/plyr.css"
     />
     <style>
       body {
@@ -17,7 +17,7 @@
         justify-content: center;
         flex-direction: column;
       }
-      videojs-video {
+      .plyr__video-wrapper {
         width: 100%;
         aspect-ratio: 16 / 9;
       }
@@ -26,14 +26,20 @@
   <body>
     <h1>Now Playing</h1>
     <br />
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/videojs-video-element@0.3/+esm"
-    ></script>
-    <videojs-video
+    <video
+      id="player"
       controls
       poster="https://wallpaperaccess.com/full/2478865.jpg"
-      src="https://rushidhar-bro-osm.herokuapp.com/125782/Spider.Man.No.Way.Home.2021.HDTC.850MB.c1nem4.x264-SUNSCREEN.mkv?hash=8b26ee"
-    ></videojs-video>
+    >
+      <source
+        src="https://rushidhar-bro-osm.herokuapp.com/125782/Spider.Man.No.Way.Home.2021.HDTC.850MB.c1nem4.x264-SUNSCREEN.mkv?hash=8b26ee"
+        type="video/x-matroska"
+      />
+    </video>
+
+    <script src="https://cdn.plyr.io/3.6.7/plyr.js"></script>
+    <script>
+      const player = new Plyr("#player");
+    </script>
   </body>
 </html>
