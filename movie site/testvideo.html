@@ -2,40 +2,39 @@
   <head>
     <title>BATTLE THROUGH THE HEAVENS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.plyr.io/3.6.7/plyr.css"
-    />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.7/plyr.css" />
     <style>
       body {
         background-image: url("https://e0.pxfuel.com/wallpapers/78/976/desktop-wallpaper-movies-best-background-classic-movie-poster.jpg");
         background-size: cover;
         background-position: center;
-        min-height: 80%;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
       }
       .plyr__video-wrapper {
+        max-width: 600px;
         width: 100%;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 16/9;
       }
     </style>
   </head>
   <body>
     <h1>Now Playing</h1>
     <br />
-    <video
-      id="player"
-      controls
-      poster="https://wallpaperaccess.com/full/2478865.jpg"
-    >
-      <source
-        src="https://rushidhar-bro-osm.herokuapp.com/125782/Spider.Man.No.Way.Home.2021.HDTC.850MB.c1nem4.x264-SUNSCREEN.mkv?hash=8b26ee"
-        type="video/x-matroska"
-      />
-    </video>
+    <div class="plyr__video-wrapper">
+      <video
+        id="player"
+        controls
+        poster="https://wallpaperaccess.com/full/2478865.jpg"
+      >
+        <source
+          src="https://cdn-149.bayfiles.com/3492Ldz8z6/a3655b82-1688275380/BTTH+S5+EP51.mp4"
+          type="video/x-matroska"
+        />
+      </video>
+    </div>
 
     <script src="https://cdn.plyr.io/3.6.7/plyr.js"></script>
     <script>
