@@ -1,3 +1,4 @@
+<!--
 <html>
   <head>
     <title>&lt;vimeo-video&gt;</title>
@@ -28,5 +29,42 @@
       src="https://cdn.jsdelivr.net/npm/vimeo-video-element@0.2/+esm"
     ></script>
     <vimeo-video controls src="https://vimeo.com/842061272"></vimeo-video>
+  </body>
+</html>
+-->
+<html>
+  <head>
+    <title>&lt;videojs-video&gt;</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+    />
+    <style>
+      body {
+        min-height: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      videojs-video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>&lt;videojs-video&gt;</h1>
+    <br />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/videojs-video-element@0.3/+esm"
+    ></script>
+    <videojs-video
+      controls
+      poster="https://image.mux.com/O6LdRc0112FEJXH00bGsN9Q31yu5EIVHTgjTKRkKtEq1k/thumbnail.jpg?time=56"
+      src="https://stream.mux.com/O6LdRc0112FEJXH00bGsN9Q31yu5EIVHTgjTKRkKtEq1k/high.mp4"
+    ></videojs-video>
   </body>
 </html>
