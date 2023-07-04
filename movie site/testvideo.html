@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://cdn.plyr.io/3.6.7/plyr.css"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
     />
     <style>
       body {
@@ -17,7 +17,7 @@
         justify-content: center;
         flex-direction: column;
       }
-      .plyr__video-wrapper {
+      videojs-video {
         width: 80%;
         aspect-ratio: 4 / 3;
       }
@@ -26,20 +26,14 @@
   <body>
     <h1>Now Playing</h1>
     <br />
-    <video
-      id="player"
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/videojs-video-element@0.3/+esm"
+    ></script>
+    <videojs-video
       controls
       poster="https://wallpaperaccess.com/full/2478865.jpg"
-    >
-      <source
-        src="https://rushidhar-bro-osm.herokuapp.com/124412/BTTH+S5+EP51.mp4?hash=ec03bf"
-        type="video/x-matroska"
-      />
-    </video>
-
-    <script src="https://cdn.plyr.io/3.6.7/plyr.js"></script>
-    <script>
-      const player = new Plyr("#player");
-    </script>
+      src="https://rushidhar-bro-osm.herokuapp.com/124412/BTTH+S5+EP51.mp4?hash=ec03bf"
+    ></videojs-video>
   </body>
 </html>
