@@ -1,13 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+<html>
+<head>
+  <script type="module" src="https://unpkg.com/hls-video-element@0.0"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<head>
+  <style>
+    /* Material Theming */
+    :root {
+      --swiper-theme-color: #2196f3; /* Set your primary color here */
+      --swiper-background-color: #0000; /* Set your background color here */
+    }
+
+    #video-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 20px;
+    }
+
+    #video-carousel {
+      width: 100%;
+    }
+
+    #video-carousel .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px; /* Add perspective for the 3D effect */
+    }
+
+    #video-carousel .swiper-slide hls-video {
+      max-width: 80%;
+    }
+
+    #video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); /* Adjust the overlay opacity as needed */
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a box shadow for a 3D effect */
+      transform: translateZ(0); /* Prevent video flickering in Safari */
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container">
+    <div id="video-carousel" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://appletree-mytime-samsungbrazil.amagi.tv/playlist.m3u8"></hls-video>
+        </div>
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://pfilmhls.wns.live/hls/stream.m3u8"></hls-video>
+        </div>
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5ff8c708653d080007361b14/master.m3u8?advertisingId=&appName=web&appStoreUrl=&appVersion=DNT&app_name=&architecture=&buildVersion=&deviceDNT=0&deviceId=5d14fc31252d35decbc4080b&deviceLat=&deviceLon=&deviceMake=web&deviceModel=web&deviceType=web&deviceVersion=DNT&includeExtendedEvents=false&marketingRegion=US&serverSideAds=false&sid=873&terminate=false&userId="></hls-video>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const swiper = new Swiper('#video-carousel', {
+      slidesPerView: 1,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+</body>
+</html>
+-->
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/mstyle.css">
 </head>
 
 <body>
@@ -17,91 +110,196 @@
             <div class="flow home" onclick="lol()">
                 <span class="material-icons">home</span>
                 <h2>Home</h2>
-                <script>
-                    function lol() {
-                        // Open a new window or perform any desired action
-                        window.open('./milf.html', '_blank');
-                    }
-                </script>
+              <script>
+              function lol() {
+              // Open a new window or perform any desired action
+              window.open('./milf.html', '_blank');
+              }
+            </script>
             </div>
             <div class="flow" onclick="handleClick('movies')">
                 <span class="material-icons">movie</span>
                 <h2>Movies</h2>
             </div>
-            <head>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-                <style>
-                    .dropdown {
-                        position: relative;
-                        display: inline-block;
-                    }
-
-                    .dropdown .dropdown-arrow {
-                        cursor: pointer;
-                    }
-
-                    .dropdown .dropdown-content {
-                        display: none;
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        width: 100%;
-                        background-color: #000000;
-                        padding: 5px;
-                        border-radius: 5px;
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-                    }
-
-                    .dropdown:hover .dropdown-content {
-                        display: block;
-                    }
-
-                    .dropdown-option {
-                        padding: 5px;
-                        cursor: pointer;
-                    }
-
-                    .dropdown-option:hover {
-                        background-color: #f2f2f2;
-                    }
-                </style>
+              <head>
+               <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+               <style>
+                 .dropdown {
+                     position: relative;
+                     display: inline-block;
+                 }
+                   
+                 .dropdown .dropdown-arrow {
+                     cursor: pointer;
+                 }
+               
+                 .dropdown .dropdown-content {
+                     display: none;
+                     position: absolute;
+                     top: 100%;
+                     left: 0;
+                     width: 100%;
+                     background-color: #000000;
+                     padding: 5px;
+                     border-radius: 5px;
+                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                 }
+               
+                 .dropdown:hover .dropdown-content {
+                     display: block;
+                 }   
+                   
+                 .dropdown-option {
+                     padding: 5px;
+                     cursor: pointer;
+                 }   
+                     
+                 .dropdown-option:hover {
+                     background-color: #f2f2f2;
+                 }
+               </style>
             </head>
             <body>
-                <div class="flow dropdown">
-                    <span class="material-icons dropdown-arrow">arrow_drop_down</span>
-                    <h2>Tv</h2>
-                    <div class="dropdown-content">
-                        <div class="dropdown-option">Movies</div>
-                        <div class="dropdown-option">Entertainment</div>
-                        <div class="dropdown-option" onclick="authenticate()">XXX Section (18+)</div>
-                    </div>
-                </div>
-            </body>
+              <div class="flow dropdown">
+                 <span class="material-icons dropdown-arrow">arrow_drop_down</span>
+                 <h2>Tv</h2>
+                 <div class="dropdown-content">
+                    <div class="dropdown-option">Movies</div>
+                    <div class="dropdown-option">Entertainment</div>
+                    <div class="dropdown-option" onclick="authenticate()">XXX Section (18+)</div>
+                 </div>
+              </div>
+            </body>           
+            <script>
+              function authenticate() {
+                var password = prompt("Entering 18+ Area! Please Enter password:")
+                var attempts = localStorage.getItem('attempts');
+                var lastAttemptTime = localStorage.getItem('lastAttemptTime');
+                var maxAttempts = 3;
+                if (attempts >= maxAttempts && Date.now() - lastAttemptTime < 5 * 1000) {
+                  alert("Access blocked. Try again after 5s.");
+                  return;
+                }  
+                if (password === "Candella") {
+                  localStorage.removeItem('attempts');
+                  localStorage.removeItem('lastAttemptTime');
+                  setTimeout(function() {
+                    window.open('./huh.html', '_blank');
+                    window.location.replace('motherfuckingwebsite.com', '_blank');
+                    window.close()
+                  }, 0);
+                  inactivityTimeout = setTimeout(function() {
+                    window.close('./huh.html', '_blank');
+                    
+                  }, 5 * 1000);                  
+                } else {
+                   attempts = attempts ? parseInt(attempts) + 1 : 1;
+                   lastAttemptTime = Date.now();
+                   localStorage.setItem('attempts', attempts);
+                   localStorage.setItem('lastAttemptTime', lastAttemptTime);
+                   var attemptsLeft = maxAttempts - attempts;
+                  
+                   if (attemptsLeft > 0) {
+                     alert("Incorrect password, Be Careful! " + attemptsLeft + " attempts left.");
+                   } else {                    
+                     alert("Incorrect password. Access blocked for 5s.");
+                   }  
+                  }  
+              }  
+            </script> 
             <p>account</p>
             <div class="flow">
                 <span class="material-icons">arrow_drop_down </span>
                 <h2>Language</h2>
             </div>
+            </div>
+      
+      <div class="right">
+    <div class="heading">
+        <div class="head-content">
+            <h2>Action Movies</h2>
+            <div class="rating">
+                <span class="material-icons">star</span>
+                <span class="material-icons">star</span>
+                <span class="material-icons">star</span>
+                <span class="material-icons">star</span>
+                <span class="material-icons">star_half</span>
+                <span>4.5</span>
+            </div>
+            <div class="btn">
+                <span class="material-icons">playlist_add</span>
+                <span>Watchlist</span>
+            </div>
+            <div class="btn">
+                <span class="material-icons">play_arrow</span>
+                <span>Play</span>
+            </div>
+            <p>something.</p>
         </div>
-
-        </div>
-        <div class="right">
-            <div class="thumbnails">
-                <div class="thumbnail">
-                    <img src="https://via.placeholder.com/300x300" alt="Thumbnail 1">
-                </div>
-                <div class="thumbnail">
-                    <img src="https://via.placeholder.com/300x300" alt="Thumbnail 2">
-                </div>
-                <div class="thumbnail">
-                    <img src="https://via.placeholder.com/300x300" alt="Thumbnail 3">
-                </div>
-                <div class="thumbnail">
-                    <img src="https://via.placeholder.com/300x300" alt="Thumbnail 4">
-                </div>
+    </div>
+    <div class="movie-container">
+        <div class="card">
+            <img class="card-img" src="https://via.placeholder.com/300x300" alt="Movie 1">
+            <div class="card-body">
+                <h3>Movie 1</h3>
+                <p>Action, Thriller</p>
             </div>
         </div>
-    </div>    
-</body>
+        <div class="card">
+            <img class="card-img" src="https://via.placeholder.com/300x300" alt="Movie 2">
+            <div class="card-body">
+                <h3>Movie 2</h3>
+                <p>Action, Comedy</p>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://via.placeholder.com/300x300" alt="Movie 3">
+            <div class="card-body">
+                <h3>Movie 3</h3>
+                <p>Action, Romantic</p>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://via.placeholder.com/300x300" alt="Movie 4">
+            <div class="card-body">
+                <h3>Movie 4</h3>
+                <p>Action, Thriller</p>
+            </div>
+        </div>
+    </div>
+</div>
 
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+          .movie-container {            
+            display: flex;
+            flex-direction: column;
+          }
+          
+          .card {
+            display: flex;
+            margin-bottom: 20px;
+          } 
+            
+          .card-img {
+            width: 100px;
+            height: 150px;
+            object-fit: cover;
+            margin-right: 10px;
+          } 
+            
+          .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          } 
+            
+          .card-body h3,
+          .card-body p {
+            margin: 0;
+          }
+  </style>      
+      
+</body>
 </html>
