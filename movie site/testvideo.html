@@ -17,39 +17,6 @@
         justify-content: center;
         flex-direction: column;
       }
-
-      h1 {
-        font-family: 'Arial', sans-serif;
-        font-size: 48px;
-        color: #fff;
-        text-transform: uppercase;
-        transform-style: preserve-3d;
-        transform: translateZ(30px);
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        transition: transform 0.5s ease;
-      }
-
-      h1:hover {
-        transform: translateZ(50px);
-      }
-      
-      .episode-thumbnail {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-
-      .thumbnail-image {
-        width: 100px;
-        height: auto;
-        margin-right: 10px;
-      }
-
-      .thumbnail-title {
-        font-size: 18px;
-        color: #fff;
-      }
-
       videojs-video {
         width: 80%;
         aspect-ratio: 4 / 3;
@@ -57,93 +24,17 @@
     </style>
   </head>
   <body>
-    <h1>Now Playing</h1>
+    <div class="btn-transform transform-vertical red" </div>
+    <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Now PLaying </a></div>
     <br />
     <script
       type="module"
       src="https://cdn.jsdelivr.net/npm/videojs-video-element@0.3/+esm"
     ></script>
-    <div id="episodes-container"></div>
-
-    <script src="https://unpkg.com/mongodb@4.1.3"></script>
-    <script>
-      const MongoClient = mongodb.MongoClient;
-
-      const url = 'mongodb+srv://steven:test@cluster0.jxp0re5.mongodb.net/';
-      const dbName = 'Cluster0';
-
-      MongoClient.connect(url, function(err, client) {
-        if (err) {
-          console.error('Failed to connect to MongoDB:', err);
-          return;
-        }
-
-        const db = client.db(dbName);
-        const collection = db.collection('episodes');
-
-        // Define an array of episodes
-        const episodes = [
-          { title: 'Episode 1', link: 'https://rushidhar-bro-osm.herokuapp.com/99678/BTTH+S5+EP45.mp4?hash=89af45', thumbnail: 'https://wallpaperaccess.com/full/2478865.jpg' },
-          { title: 'Episode 2', link: 'https://rushidhar-bro-osm.herokuapp.com/99674/BTTH+S5+EP46.mp4?hash=a9381e', thumbnail: 'https://wallpaperaccess.com/full/2478865.jpg' },
-          { title: 'Episode 3', link: 'https://rushidhar-bro-osm.herokuapp.com/105243/BTTH+S5+EP47.mp4?hash=12b135', thumbnail: 'https://wallpaperaccess.com/full/2478865.jpg' },
-          // Add more episodes as needed
-        ];
-
-        collection.insertMany(episodes, function(err, result) {
-          if (err) {
-            console.error('Failed to insert episodes into MongoDB:', err);
-            client.close();
-            return;
-          }
-
-          console.log('Episodes inserted successfully:', result.insertedCount);
-
-          // Fetch episodes from MongoDB
-          collection.find({}).toArray(function(err, episodes) {
-            if (err) {
-              console.error('Failed to fetch episodes from MongoDB:', err);
-              client.close();
-              return;
-            }
-
-            const episodesContainer = document.getElementById('episodes-container');
-
-            episodes.forEach(function(episode) {
-              const title = episode.title;
-              const link = episode.link;
-              const thumbnail = episode.thumbnail;
-
-              const episodeThumbnail = document.createElement('div');
-              episodeThumbnail.className = 'episode-thumbnail';
-
-              const thumbnailImage = document.createElement('img');
-              thumbnailImage.className = 'thumbnail-image';
-              thumbnailImage.src = thumbnail;
-
-              const thumbnailTitle = document.createElement('div');
-              thumbnailTitle.className = 'thumbnail-title';
-              thumbnailTitle.textContent = title;
-
-              episodeThumbnail.appendChild(thumbnailImage);
-              episodeThumbnail.appendChild(thumbnailTitle);
-              episodesContainer.appendChild(episodeThumbnail);
-
-              episodeThumbnail.addEventListener('click', function() {
-                // Play the video when thumbnail is clicked
-                const videoElement = document.createElement('videojs-video');
-                videoElement.controls = true;
-                videoElement.poster = thumbnail;
-                videoElement.src = link;
-
-                episodesContainer.innerHTML = ''; // Clear the thumbnails
-                episodesContainer.appendChild(videoElement);
-              });
-            });
-
-            client.close();
-          });
-        });
-      });
-    </script>
+    <videojs-video
+      controls
+      poster="https://wallpaperaccess.com/full/2478865.jpg"
+      src="https://rushidhar-bro-osm.herokuapp.com/124412/BTTH+S5+EP51.mp4?hash=ec03bf"
+    ></videojs-video>
   </body>
 </html>
