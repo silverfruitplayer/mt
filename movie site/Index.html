@@ -94,12 +94,13 @@
 -->
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <title>Document</title>
-  <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
   <style>
     .top-bar {
       background-color: #000000;
@@ -129,94 +130,120 @@
     <div class="menu-icon" onclick="toggleMenu()">
       <span class="material-icons">menu</span>
     </div>
-    <div class="account">
-      <p>Account</p>
-    </div>
-  </div>
-  <div class="container">
-    <div class="left-menu">
-      <div class="left">
-        <p>Menu</p>
-        <div class="flow home" onclick="lol()">
-          <span class="material-icons">home</span>
-          <h2>Home</h2>
-          <script>
-            function lol() {
+    <div class="container">
+        <div class="left">
+            <p>Menu</p>
+            <div class="flow home" onclick="lol()">
+                <span class="material-icons">home</span>
+                <h2>Home</h2>
+              <script>
+              function lol() {
               // Open a new window or perform any desired action
               window.open('./milf.html', '_blank');
-            }
-          </script>
-        </div>
-        <div class="flow" onclick="handleClick('movies')">
-          <span class="material-icons">movie</span>
-          <h2>Movies</h2>
-        </div>
-        <div class="flow dropdown">
-          <span class="material-icons dropdown-arrow">arrow_drop_down</span>
-          <h2>Tv</h2>
-          <div class="dropdown-content">
-            <div class="dropdown-option">Movies</div>
-            <div class="dropdown-option">Entertainment</div>
-            <div class="dropdown-option" onclick="authenticate()">XXX Section (18+)</div>
-          </div>
-        </div>
-        <p>Account</p>
-        <div class="flow">
-          <span class="material-icons">arrow_drop_down </span>
-          <h2>Language</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function toggleMenu() {
-      const leftMenu = document.querySelector('.left-menu');
-      leftMenu.classList.toggle('open');
-    }
-
-    function handleClick(category) {
-      // Handle the click event for the specified category
-      console.log('Clicked category:', category);
-    }
-
-    function authenticate() {
-      var password = prompt("Entering 18+ Area! Please Enter password:")
-      var attempts = localStorage.getItem('attempts');
-      var lastAttemptTime = localStorage.getItem('lastAttemptTime');
-      var maxAttempts = 3;
-      if (attempts >= maxAttempts && Date.now() - lastAttemptTime < 5 * 1000) {
-        alert("Access blocked. Try again after 5s.");
-        return;
-      }  
-      if (password === "Candella") {
-        localStorage.removeItem('attempts');
-        localStorage.removeItem('lastAttemptTime');
-        setTimeout(function() {
-          window.open('./huh.html', '_blank');
-          window.location.replace('motherfuckingwebsite.com', '_blank');
-          window.close()
-        }, 0);
-        inactivityTimeout = setTimeout(function() {
-          window.close('./huh.html', '_blank');
-        }, 5 * 1000);
-      } else {
-        attempts = attempts ? parseInt(attempts) + 1 : 1;
-        lastAttemptTime = Date.now();
-        localStorage.setItem('attempts', attempts);
-        localStorage.setItem('lastAttemptTime', lastAttemptTime);
-        var attemptsLeft = maxAttempts - attempts;
-        
-        if (attemptsLeft > 0) {
-          alert("Incorrect password, Be Careful! " + attemptsLeft + " attempts left.");
-        } else {
-          alert("Incorrect password. Access blocked for 5s.");
-        }
-      }
-    }
-  </script>
-</body>
-  
+              }
+            </script>
+            </div>
+            <div class="flow" onclick="handleClick('movies')">
+                <span class="material-icons">movie</span>
+                <h2>Movies</h2>
+            </div>
+              <head>
+               <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+               <style>
+                 .dropdown {
+                     position: relative;
+                     display: inline-block;
+                 }
+                   
+                 .dropdown .dropdown-arrow {
+                     cursor: pointer;
+                 }
+               
+                 .dropdown .dropdown-content {
+                     display: none;
+                     position: absolute;
+                     top: 100%;
+                     left: 0;
+                     width: 100%;
+                     background-color: #000000;
+                     padding: 5px;
+                     border-radius: 5px;
+                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                 }
+               
+                 .dropdown:hover .dropdown-content {
+                     display: block;
+                 }   
+                   
+                 .dropdown-option {
+                     padding: 5px;
+                     cursor: pointer;
+                 }   
+                     
+                 .dropdown-option:hover {
+                     background-color: #f2f2f2;
+                 }
+               </style>
+            </head>
+            <body>
+              <div class="flow dropdown">
+                 <span class="material-icons dropdown-arrow">arrow_drop_down</span>
+                 <h2>Tv</h2>
+                 <div class="dropdown-content">
+                    <div class="dropdown-option">Movies</div>
+                    <div class="dropdown-option">Entertainment</div>
+                    <div class="dropdown-option" onclick="authenticate()">XXX Section (18+)</div>
+                 </div>
+              </div>
+            </body>           
+            <script>
+              function toggleMenu() {
+                  const leftMenu = document.querySelector('.left-menu');
+                  leftMenu.classList.toggle('open');
+              }
+              function authenticate() {
+                var password = prompt("Entering 18+ Area! Please Enter password:")
+                var attempts = localStorage.getItem('attempts');
+                var lastAttemptTime = localStorage.getItem('lastAttemptTime');
+                var maxAttempts = 3;
+                if (attempts >= maxAttempts && Date.now() - lastAttemptTime < 5 * 1000) {
+                  alert("Access blocked. Try again after 5s.");
+                  return;
+                }  
+                if (password === "Candella") {
+                  localStorage.removeItem('attempts');
+                  localStorage.removeItem('lastAttemptTime');
+                  setTimeout(function() {
+                    window.open('./huh.html', '_blank');
+                    window.location.replace('motherfuckingwebsite.com', '_blank');
+                    window.close()
+                  }, 0);
+                  inactivityTimeout = setTimeout(function() {
+                    window.close('./huh.html', '_blank');
+                    
+                  }, 5 * 1000);                  
+                } else {
+                   attempts = attempts ? parseInt(attempts) + 1 : 1;
+                   lastAttemptTime = Date.now();
+                   localStorage.setItem('attempts', attempts);
+                   localStorage.setItem('lastAttemptTime', lastAttemptTime);
+                   var attemptsLeft = maxAttempts - attempts;
+                  
+                   if (attemptsLeft > 0) {
+                     alert("Incorrect password, Be Careful! " + attemptsLeft + " attempts left.");
+                   } else {                    
+                     alert("Incorrect password. Access blocked for 5s.");
+                   }  
+                  }  
+              }  
+            </script> 
+            <p>account</p>
+            <div class="flow">
+                <span class="material-icons">arrow_drop_down </span>
+                <h2>Language</h2>
+            </div>
+            </div>
+      
       <div class="right">
     <div class="heading">
         <div class="head-content">
