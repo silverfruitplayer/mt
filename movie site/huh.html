@@ -161,7 +161,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1;
+      z-index: 1; 
     }
   </style>
 </head>
@@ -238,14 +238,10 @@
         modal.style.justifyContent = 'center';
         modal.style.alignItems = 'center';
 
-        const closeButton = document.createElement('div');
-        closeButton.className = 'close-button material-icons';
-        closeButton.textContent = 'close';
-        closeButton.addEventListener('click', () => {
+        modal.addEventListener('click', () => {
           closeModal(modal, videoElement);
         });
 
-        modal.appendChild(closeButton);
         modal.appendChild(videoElement);
         document.body.appendChild(modal);
       }
@@ -256,6 +252,12 @@
         videoElement.removeAttribute('src');
         videoElement.load();
       }
+
+      window.addEventListener('popstate', () => {
+        const modal = document.querySelector('div');
+        const videoElement = document.querySelector('video');
+        closeModal(modal, videoElement);
+      });
     } else {
       // Incorrect password, display an error message or redirect to another page
       alert("Incorrect password. Access denied.");
