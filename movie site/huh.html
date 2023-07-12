@@ -167,116 +167,101 @@
 </head>
   
 <body>
-  <button id="authenticate-button">Authenticate with Fingerprint (Only Compatiable With devices that have Fingerprint sensor)</button>
   <div class="gallery" id="gallery"></div>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    const authenticateButton = document.getElementById('authenticate-button');
+    const password = prompt('Enter the password to access XXX Area:');
 
-    authenticateButton.addEventListener('click', () => {
-      if (window.PublicKeyCredential) {
-        navigator.credentials.get({ publicKey: { authenticatorSelection: { userVerification: "required" } } })
-          .then((credential) => {
-            const password = prompt('Enter the password to access XXX Area:');
-            if (password === 'your_password_here') {
-              // Password is correct, proceed with the page content
-              alert("Welcome to XXX Area, kthnxbye.");
+    if (password === 'secured') {
+      // Password is correct, proceed with the page content
 
-              // Fetch videos.json and populate the gallery
-              fetch('videos.json')
-                .then(response => response.json())
-                .then(data => {
-                  const gallery = document.getElementById('gallery');
+      alert("Welcome to XXX Area, kthnxbye.");
 
-                  data.videos.forEach(video => {
-                    const thumbnail = document.createElement('div');
-                    thumbnail.className = 'thumbnail';
-                    thumbnail.addEventListener('click', () => {
-                      playVideo(video.url);
-                    });
+      fetch('videos.json')
+        .then(response => response.json())
+        .then(data => {
+          const gallery = document.getElementById('gallery');
 
-                    const thumbnailImage = document.createElement('img');
-                    thumbnailImage.src = video.thumbnail;
-                    thumbnail.appendChild(thumbnailImage);
+          data.videos.forEach(video => {
+            const thumbnail = document.createElement('div');
+            thumbnail.className = 'thumbnail';
+            thumbnail.addEventListener('click', () => {
+              playVideo(video.url);
+            });
 
-                    const title = document.createElement('div');
-                    title.className = 'title';
-                    title.textContent = video.title;
-                    thumbnail.appendChild(title);
+            const thumbnailImage = document.createElement('img');
+            thumbnailImage.src = video.thumbnail;
+            thumbnail.appendChild(thumbnailImage);
 
-                    gallery.appendChild(thumbnail);
-                  });
-                })
-                .catch(error => {
-                  console.error('Error loading videos:', error);
-                });
+            const title = document.createElement('div');
+            title.className = 'title';
+            title.textContent = video.title;
+            thumbnail.appendChild(title);
 
-              function playVideo(url) {
-                const videoElement = document.createElement('video');
-                videoElement.controls = true;
-                videoElement.style.maxWidth = '50%';
-                videoElement.style.maxHeight = '50%';
-
-                if (Hls.isSupported()) {
-                  const hls = new Hls();
-                  hls.loadSource(url);
-                  hls.attachMedia(videoElement);
-                  hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                    videoElement.play();
-                  });
-                } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-                  videoElement.src = url;
-                  videoElement.addEventListener('loadedmetadata', () => {
-                    videoElement.play();
-                  });
-                } else {
-                  console.error('HLS is not supported');
-                }
-
-                const modal = document.createElement('div');
-                modal.style.position = 'fixed';
-                modal.style.top = '0';
-                modal.style.left = '0';
-                modal.style.width = '100%';
-                modal.style.height = '100%';
-                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-                modal.style.display = 'flex';
-                modal.style.justifyContent = 'center';
-                modal.style.alignItems = 'center';
-
-                const closeButton = document.createElement('div');
-                closeButton.className = 'close-button material-icons';
-                closeButton.textContent = 'close';
-                closeButton.addEventListener('click', () => {
-                  closeModal(modal, videoElement);
-                });
-
-                modal.appendChild(closeButton);
-                modal.appendChild(videoElement);
-                document.body.appendChild(modal);
-              }
-
-              function closeModal(modal, videoElement) {
-                modal.remove();
-                videoElement.pause();
-                videoElement.removeAttribute('src');
-                videoElement.load();
-              }
-            } else {
-              // Incorrect password, display an error message or redirect to another page
-              alert("Incorrect password. Access denied.");
-              // You can redirect to another page using:
-              // window.location.href = 'error.html';
-            }
-          })
-          .catch((error) => {
-            console.error('Biometric authentication error:', error);
+            gallery.appendChild(thumbnail);
           });
-      } else {
-        // WebAuthn not supported by the browser
-        console.error('WebAuthn not supported');
+        })
+        .catch(error => {
+          console.error('Error loading videos:', error);
+        });
+
+      function playVideo(url) {
+        const videoElement = document.createElement('video');
+        videoElement.controls = true;
+        videoElement.style.maxWidth = '50%';
+        videoElement.style.maxHeight = '50%';
+
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(url);
+          hls.attachMedia(videoElement);
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            videoElement.play();
+          });
+        } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+          videoElement.src = url;
+          videoElement.addEventListener('loadedmetadata', () => {
+            videoElement.play();
+          });
+        } else {
+          console.error('HLS is not supported');
+        }
+
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+
+        const closeButton = document.createElement('div');
+        closeButton.className = 'close-button material-icons';
+        closeButton.textContent = 'close';
+        closeButton.addEventListener('click', () => {
+          closeModal(modal, videoElement);
+        });
+
+        modal.appendChild(closeButton);
+        modal.appendChild(videoElement);
+        document.body.appendChild(modal);
       }
-    });
+
+      function closeModal(modal, videoElement) {
+        modal.remove();
+        videoElement.pause();
+        videoElement.removeAttribute('src');
+        videoElement.load();
+      }
+    } else {
+      // Incorrect password, display an error message or redirect to another page
+      alert("Incorrect password. Access denied.");
+      // You can redirect to another page using:
+      window.location.href = '404.html';
+    }
   </script>
 </body>
 </html>
