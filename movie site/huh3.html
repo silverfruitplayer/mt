@@ -247,27 +247,16 @@
         });
 
       function playVideo(url) {
-        const videoElement = document.createElement('video');
-        videoElement.controls = true;
-        videoElement.style.maxWidth = '50%';
-        videoElement.style.maxHeight = '50%';
+         const videoElement = document.createElement('video');
+         videoElement.controls = true;
+         videoElement.style.maxWidth = '50%';
+         videoElement.style.maxHeight = '50%';
 
-        if (Hls.isSupported()) {
-          const hls = new Hls();
-          hls.loadSource(url);
-          hls.attachMedia(videoElement);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            videoElement.play();
-          });
-        } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-          videoElement.src = url;
-          videoElement.addEventListener('loadedmetadata', () => {
-            videoElement.play();
-          });
-        } else {
-          console.error('HLS is not supported');
-        }
-
+        videoElement.src = url;
+        videoElement.addEventListener('loadedmetadata', () => {
+        videoElement.play();
+      });
+        
         const modal = document.createElement('div');
         modal.style.position = 'fixed';
         modal.style.top = '0';
