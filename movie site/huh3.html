@@ -258,12 +258,12 @@
              hls.attachMedia(videoElement);
              hls.on(Hls.Events.MANIFEST_PARSED, () => {
                videoElement.play();
-         else {
+         } else {
            videoElement.src = url;
            videoElement.addEventListener('loadedmetadata', () => {
            videoElement.play();
-         
-       });
+         }     
+        
         
         const modal = document.createElement('div');
         modal.style.position = 'fixed';
