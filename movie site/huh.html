@@ -169,6 +169,10 @@
 </head>
   
 <body>
+  <div class="sidebar">
+  <button id="stayBtn">Stay on this page</button>
+  <button id="openBtn">Open another page</button>
+  </div>
   <div class="gallery" id="gallery"></div>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
@@ -248,11 +252,27 @@
         document.body.appendChild(modal);
       }
 
+      document.addEventListener('DOMContentLoaded', function () {
+        const stayBtn = document.getElementById('stayBtn');
+        const openBtn = document.getElementById('openBtn');
+        
+        stayBtn.addEventListener('click', function () {
+              closeModal();
+        });
+         
+        openBtn.addEventListener('click', function () {
+          redirectToAnotherPage();
+        });
+      });
+
       function closeModal(modal, videoElement) {
         modal.remove();
         videoElement.pause();
         videoElement.removeAttribute('src');
         videoElement.load();
+      }
+      function redirectToAnotherPage() {
+        window.location.href = 'another_page.html';
       }
 
       window.addEventListener('popstate', () => {
