@@ -165,40 +165,48 @@
       justify-content: center;
       z-index: 1; 
     }
-    .sidebar {
-      position: fixed;
-      top: 50%;
-      left: 20px;
-      transform: translateY(-50%);
+    .header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
     }
 
-    .sidebar button {
-      margin-bottom: 10px;
-      padding: 8px;
+    .header h1 {
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .header-buttons {
+      display: flex;
+    }
+
+    .header-buttons button {
+      margin-left: 10px;
+      padding: 8px 12px;
       background-color: rgba(0, 0, 0, 0.7);
       color: #ffffff;
       border: none;
-      border-radius: 4px;
+      border-radius: 20px;
       cursor: pointer;
     }
 
-    .sidebar button {
-      border-radius: 20px;
-      transition: background-color 0.3s ease;
-    }
-
-    .sidebar button:hover {
+    .header-buttons button:hover {
       background-color: rgba(0, 0, 0, 0.8);
     }
   </style>
 </head>
   
 <body>
-  <div class="sidebar">
-  <button id="channelsBtn">This Page(Channels)</button>
-  <button id="videosBtn">Open another page (Videos)</button>
+  <div class="header">
+    <h1>Video Gallery</h1>
+    <div class="header-buttons">
+      <button id="channelsBtn">This Page (Channels)</button>
+      <button id="videosBtn">Open another page (Videos)</button>
+    </div>
   </div>
   <div class="gallery" id="gallery"></div>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -280,8 +288,8 @@
       }
 
       document.addEventListener('DOMContentLoaded', function () {
-        const stayBtn = document.getElementById('stayBtn');
-        const openBtn = document.getElementById('openBtn');
+        const stayBtn = document.getElementById('channelsBtn');
+        const openBtn = document.getElementById('videosBtn');
         
         stayBtn.addEventListener('click', function () {
               closeModal();
