@@ -206,6 +206,7 @@
     <div class="header-buttons">
       <button id="channelsBtn">This Page (Videos)</button>
       <button id="videosBtn">Open another page (Channels)</button>
+      <button id="hlsBtn">HLS Section</button>
     </div>
   </div>
   <div class="gallery" id="gallery"></div>
@@ -251,19 +252,11 @@
          videoElement.controls = true;
          videoElement.style.maxWidth = '50%';
          videoElement.style.maxHeight = '50%';
-        
-         if (url.endswith('.m3u8')) {
-           const hls = new Hls();
-             hls.loadSource(url);
-             hls.attachMedia(videoElement);
-             hls.on(Hls.Events.MANIFEST_PARSED, () => {
-               videoElement.play();
-         } else {
-           videoElement.src = url;
-           videoElement.addEventListener('loadedmetadata', () => {
-           videoElement.play();
-         }
-      });  
+
+        videoElement.src = url;
+        videoElement.addEventListener('loadedmetadata', () => {
+        videoElement.play();
+      });
         
         const modal = document.createElement('div');
         modal.style.position = 'fixed';
@@ -287,14 +280,20 @@
       document.addEventListener('DOMContentLoaded', function () {
         const stayBtn = document.getElementById('channelsBtn');
         const openBtn = document.getElementById('videosBtn');
+        const hlsBtn = document.getElementById('hsBtn')
         
         stayBtn.addEventListener('click', function () {
               closeModal();
         });
          
         openBtn.addEventListener('click', function () {
-          redirectToAnotherPage();
+          redirect1();
         });
+
+        hlsBtn.addEventListener('click', function () {
+          redirect2();
+        });
+        
       });
 
       function closeModal(modal, videoElement) {
@@ -303,8 +302,12 @@
         videoElement.removeAttribute('src');
         videoElement.load();
       }
-      function redirectToAnotherPage() {
+      function redirect1() {
         window.location.href = 'huh.html';
+      }
+
+      function redirect2() {
+        window.location.href = 'hls.html';
       }
 
       window.addEventListener('popstate', () => {
