@@ -252,25 +252,18 @@
          videoElement.style.maxWidth = '50%';
          videoElement.style.maxHeight = '50%';
         
-         // m3u8 workaround
          if (url.endswith('.m3u8')) {
-           if (Hls.isSupported()) {
-             const hls = new Hls();
+           const hls = new Hls();
              hls.loadSource(url);
              hls.attachMedia(videoElement);
              hls.on(Hls.Events.MANIFEST_PARSED, () => {
                videoElement.play();
-             });
-           } else {
-             console.error('HLS is not supported');
-           }
-         } else {
-           // mp4 workaround
+         else {
            videoElement.src = url;
            videoElement.addEventListener('loadedmetadata', () => {
-              videoElement.play();
-           });
-         }
+           videoElement.play();
+         
+       });
         
         const modal = document.createElement('div');
         modal.style.position = 'fixed';
