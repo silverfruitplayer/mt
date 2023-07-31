@@ -166,6 +166,10 @@
       z-index: 1; 
     }
     .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       background-color: rgba(0, 0, 0, 0.7);
       padding: 10px;
       display: flex;
@@ -173,8 +177,8 @@
       align-items: center;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
+      z-index: 999; /* Ensure the header stays above other elements */
     }
-
     .header h1 {
       margin: 0;
       color: #ffffff;
