@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<!--
+  <head>
+  <script type="module" src="https://unpkg.com/hls-video-element@0.0"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<head>
+  <style>
+    /* Material Theming */
+    :root {
+      --swiper-theme-color: #0000; /* Set your primary color here */
+      --swiper-background-color: #0000; /* Set your background color here */
+    }
+
+    #video-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 20px;
+    }
+
+    #video-carousel {
+      width: 100%;
+    }
+
+    #video-carousel .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px; /* Add perspective for the 3D effect */
+    }
+
+    #video-carousel .swiper-slide hls-video {
+      max-width: 80%;
+    }
+
+    #video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); /* Adjust the overlay opacity as needed */
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a box shadow for a 3D effect */
+      transform: translateZ(0); /* Prevent video flickering in Safari */
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container">
+    <div id="video-carousel" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://cdn.adultiptv.net/anal.m3u8"></hls-video>
+        </div>
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://cdn.adultiptv.net/asian.m3u8"></hls-video>
+        </div>
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://cdn.adultiptv.net/milf.m3u8"></hls-video>
+        </div>
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://cdn.adultiptv.net/pornstar.m3u8"></hls-video>
+        </div>
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://cdn.adultiptv.net/pov.m3u8"></hls-video>
+        </div>
+        <div class="swiper-slide">
+          <hls-video controls autoplay src="https://cdn.adultiptv.net/russian.m3u8"></hls-video>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const swiper = new Swiper('#video-carousel', {
+      slidesPerView: 1,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+</body>
+-->
+<head>
+  <title>Video Gallery</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://sm.pcmag.com/t/pcmag_uk/photo/default/bbfc-uk-isp-adult-content-filter_zgby.1920.png');
+      background-size: cover;
+      background-position: center;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 20px;
+      justify-items: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .thumbnail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.05);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumbnail .title {
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1; 
+    }
+    .header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .header h1 {
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .header-buttons {
+      display: flex;
+    }
+
+    .header-buttons button {
+      margin-left: 10px;
+      padding: 8px 12px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .header-buttons button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+  
+<body>
+  <div class="header">
+    <h1>Video Gallery</h1>
+    <div class="header-buttons">
+      <button id="channelsBtn">This Page (Videos)</button>
+      <button id="videosBtn">Open another page (Channels)</button>
+    </div>
+  </div>
+  <div class="gallery" id="gallery"></div>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const password = prompt('Enter the password to access XXX Area:');
+
+    if (password === 'secured') {
+      // Password is correct, proceed with the page content
+
+      alert("Welcome to XXX Area Enjoy Bruh, kthnxbye.");
+
+      fetch('videos.json')
+        .then(response => response.json())
+        .then(data => {
+          const gallery = document.getElementById('gallery');
+
+          data.videos.forEach(video => {
+            const thumbnail = document.createElement('div');
+            thumbnail.className = 'thumbnail';
+            thumbnail.addEventListener('click', () => {
+              playVideo(video.url);
+            });
+
+            const thumbnailImage = document.createElement('img');
+            thumbnailImage.src = video.thumbnail;
+            thumbnail.appendChild(thumbnailImage);
+
+            const title = document.createElement('div');
+            title.className = 'title';
+            title.textContent = video.title;
+            thumbnail.appendChild(title);
+
+            gallery.appendChild(thumbnail);
+          });
+        })
+        .catch(error => {
+          console.error('Error loading videos:', error);
+        });
+
+      function playVideo(url) {
+        const videoElement = document.createElement('video');
+        videoElement.controls = true;
+        videoElement.style.maxWidth = '50%';
+        videoElement.style.maxHeight = '50%';
+
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(url);
+          hls.attachMedia(videoElement);
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            videoElement.play();
+          });
+        } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+          videoElement.src = url;
+          videoElement.addEventListener('loadedmetadata', () => {
+            videoElement.play();
+          });
+        } else {
+          console.error('HLS is not supported');
+        }
+
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+
+        modal.addEventListener('click', () => {
+          closeModal(modal, videoElement);
+        });
+
+        modal.appendChild(videoElement);
+        document.body.appendChild(modal);
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const stayBtn = document.getElementById('channelsBtn');
+        const openBtn = document.getElementById('videosBtn');
+        
+        stayBtn.addEventListener('click', function () {
+              closeModal();
+        });
+         
+        openBtn.addEventListener('click', function () {
+          redirectToAnotherPage();
+        });
+      });
+
+      function closeModal(modal, videoElement) {
+        modal.remove();
+        videoElement.pause();
+        videoElement.removeAttribute('src');
+        videoElement.load();
+      }
+      function redirectToAnotherPage() {
+        window.location.href = 'huh.html';
+      }
+
+      window.addEventListener('popstate', () => {
+        const modal = document.querySelector('div');
+        const videoElement = document.querySelector('video');
+        closeModal(modal, videoElement);
+      });
+    } else {
+      // Incorrect password, display an error message or redirect to another page
+      alert("Incorrect password. Access denied.");
+      // You can redirect to another page using:
+      window.location.href = '404.html';
+    }
+  </script>
+</body>
+</html>
