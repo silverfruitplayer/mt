@@ -92,12 +92,17 @@
 </head>
 <body>
   <header>
-    <h1>Aesthetic Movie Site</h1>
+    <h1>Movie Site</h1>
     <div class="header-buttons">
             <button class="header-button" onclick="openPage('huh.html')">Channels</button>
             <button class="header-button" onclick="openPage('huh2.html')">movies</button>
             <button class="header-button" onclick="openPage('huh3.html')">Videos</button>
         </div>
+    <script>
+        function openPage(pageUrl) {
+            window.location.href = pageUrl;
+        }
+    </script>
   </header>
 
   <div class="movie-list">
