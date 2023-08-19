@@ -277,6 +277,10 @@
         document.body.appendChild(modal);
       }
 
+      document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+
       document.addEventListener('DOMContentLoaded', function () {
         const stayBtn = document.getElementById('channelsBtn');
         const openBtn = document.getElementById('videosBtn');
