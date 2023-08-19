@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found</title>
     <style>
-        body {
+        @media (max-width: 768px) {
+            body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f0f0f0;
@@ -16,8 +17,9 @@
             justify-content: center;
             height: 100vh;
             background-image: url('https://i.ibb.co/ysRNGph/404.jpg');
-            background-size: cover;
+            background-size: contain;
             background-repeat: no-repeat;
+            }
         }
         
         .container {
@@ -38,11 +40,7 @@
             color: #555;
             margin: 0;
         }
-        @media (max-width: 768px) {
-            body {
-                background-size: contain;
-            }
-        }
+   
     </style>
 </head>
 <body>
@@ -52,3 +50,6 @@
     </div>
 </body>
 </html>
+            
+            
+        
