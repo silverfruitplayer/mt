@@ -63,6 +63,13 @@
             }
         }
     </style>
+    <script>
+        // Disable right-click on the page
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+        alert("blocked");
+    </script>
 </head>
 <body>
     <div class="container">
