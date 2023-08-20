@@ -1,45 +1,68 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>BATTLE THROUGH THE HEAVENS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
-    />
-    <style>
-      body {
-        background-image: url("https://e0.pxfuel.com/wallpapers/78/976/desktop-wallpaper-movies-best-background-classic-movie-poster.jpg");
-        background-size: cover;
-        background-position: center;
-        min-height: 80%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      }
-      videojs-video {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Now Playing</h1>
-    <br />
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/videojs-video-element@0.3/+esm"
-    ></script>
+<head>
+  <title>BATTLE THROUGH THE HEAVENS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("https://e0.pxfuel.com/wallpapers/78/976/desktop-wallpaper-movies-best-background-classic-movie-poster.jpg");
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .video-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px;
+    }
+    videojs-video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+    .button-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .action-button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    .action-button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Now Playing</h1>
+  <div class="video-container">
     <videojs-video
       controls
       poster="https://wallpaperaccess.com/full/2478865.jpg"
       src="https://5e37-18-141-189-178.ngrok-free.app/1583/JOPORN_NET_17481_480p_mp4.mp4?hash=5514cf"
     ></videojs-video>
+  </div>
+  <div class="button-container">
     <a
-      class="open-vlc-button"
+      class="action-button"
       href="vlc://https://5e37-18-141-189-178.ngrok-free.app/1583/JOPORN_NET_17481_480p_mkv.mkv?hash=5514cf"
     >
-      Open in VLC Media Player   
+      Open in VLC Media Player
     </a>
-  </body>
+  </div>
+</body>
 </html>
