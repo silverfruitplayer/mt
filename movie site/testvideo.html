@@ -64,7 +64,14 @@
       onclick="openWithVideoPlayer()"
     >
       Open in Video Player
-    </a>    
+    </a>
+    <a
+      class="action-button"
+      href="#"
+      onclick="share()"
+    >
+      Share
+    </a>
     <script>
       function openWithVideoPlayer() {
         const modal = document.createElement("div");
@@ -89,6 +96,16 @@
           document.body.removeChild(modal);
         });    
       }
+      function share() {
+        if (navigator.share) {
+          navigator.share({
+            url: "https://5e37-18-141-189-178.ngrok-free.app/1583/JOPORN_NET_17481_480p_mkv.mkv?hash=5514cf",
+            title: "Watch Video: Video Title"
+          });
+        } else {
+          return;
+        }  
+      }   
     </script>
   </div>  
     <div class="description-container">
