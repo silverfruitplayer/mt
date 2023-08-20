@@ -60,10 +60,22 @@
     </video>
     <a
       class="action-button"
-      href="vlc:/"
+      href="#"
+      onclick="openWithVideoPlayer()"
     >
-      Open in VLC Media Player
-    </a>
+      Open in Video Player
+    </a>    
+    <script>
+      function openWithVideoPlayer() {
+        if (navigator.share) {
+          navigator.share({
+            url: "https://5e37-18-141-189-178.ngrok-free.app/1583/JOPORN_NET_17481_480p_mkv.mkv?hash=5514cf",
+            title: "Video Title"
+          });
+        } 
+      }
+    </script>
+  </div>  
     <div class="description-container">
       <h2>Video Description</h2>
       <p>
