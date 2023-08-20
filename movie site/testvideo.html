@@ -47,11 +47,16 @@
       background-color: #555;
     }
   </style>
+  <script>
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+  </script>
 </head>
 <body>
   <h1>Now Playing</h1>
   <div class="video-container">
-    <video controls poster="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2">
+    <video controls controlsList="nodownload" poster="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2">
       <source
         src="https://5e37-18-141-189-178.ngrok-free.app/1587/OPPENHEIMER.mp4?hash=0c40c5"
         type="video/mp4"
