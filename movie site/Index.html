@@ -96,6 +96,26 @@
       text-align: center;
       background-color: rgba(34, 34, 34, 0.7);
       backdrop-filter: blur(5px);
+      
+      .footer-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .footer-button:hover {
+            background-color: #555;
+        }
     }
   </style>
 </head>
@@ -162,6 +182,14 @@
 
   <footer>
     <p>&copy; 2023 Aesthetic Movie Site made by silverfruitplayer. All rights reserved.</p>
+    <div class="header-buttons">
+            <button class="header-button" onclick="git('https://github.com/silverfruitplayer')">GitHub (Silverfruitplayer)</button>
+        </div>
+    <script>
+        function git(pageUrl) {
+            window.location.href = pageUrl;
+        }
+    </script>
   </footer>
 </body>
 </html>
