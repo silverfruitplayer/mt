@@ -176,22 +176,24 @@
 <body>
    <script>
     function authenticate() {
+      if (!sessionStorage.getItem("authenticated")) {
         var username = prompt("Enter your username:");
         var password = prompt("Enter your password:");
 
         if (username === "x" && password === "y") {
-          alert("Welcome to Movie Site made by SilverFruitPlayer, Your session will expire After 5 minutes");
+          sessionStorage.setItem("authenticated", "true");
           setTimeout(function() {
             alert("<b>Session Expired, Login Again</b>");
             window.location.reload()
-          }, 300000);
+          }, 1000);
         } else {
           alert("Incorrect username or password. Access denied, Redirecting..");
           window.location.href = "404.html";
           setTimeout(function() {
-            window.location.close()
-          } 10000);
-        }  
+            window.close();
+          }, 1000);
+        }
+      }
     }
   </script>
   <header>
