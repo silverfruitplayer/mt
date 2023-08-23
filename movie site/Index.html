@@ -223,6 +223,15 @@
   </script>
 </head>
 <body>
+  <header>
+    <h1>Movie Site</h1>
+    <div class="header-buttons">
+      <button class="header-button" onclick="openPage('huh.html')">Channels</button>
+      <button class="header-button" onclick="openPage('huh2.html')">Movies</button>
+      <button class="header-button" onclick="openPage('huh3.html')">Videos</button>
+    </div>
+  </header>
+
   <div class="login-form-container" id="loginForm">
     <div class="login-form">
       <h2>Login</h2>
@@ -232,9 +241,6 @@
     </div>
   </div>
   <script>
-    // ... (your existing scripts) ...
-    
-    // Show login form when login button is clicked
     const loginButton = document.querySelector(".header-button");
     const loginForm = document.getElementById("loginForm");
     
@@ -242,14 +248,6 @@
       loginForm.style.display = "flex";
     });
   </script>
-  <header>
-    <h1>Movie Site</h1>
-    <div class="header-buttons">
-      <button class="header-button" onclick="openPage('huh.html')">Channels</button>
-      <button class="header-button" onclick="openPage('huh2.html')">Movies</button>
-      <button class="header-button" onclick="openPage('huh3.html')">Videos</button>
-    </div>
-  </header>
 
   <div class="movie-list">
     <div class="movie-item" onclick="openPage('testvideo.html')">
@@ -312,6 +310,7 @@
     function git(pageUrl) {
         window.location.href = pageUrl;
     }
+    
   </script>
 </body>
 </html>
