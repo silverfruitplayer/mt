@@ -181,9 +181,9 @@
 
       if (username === "x" && password === "y") {
         setTimeout(function() {
-          alert("Session has expired, login again.")
+          alert("<b>Session Expired, Login Again.</b>")
           window.location.reload()
-        }, 1000);
+        }, 300000);
       } else {
         alert("Incorrect username or password. Access denied.");
         window.location.href = "404.html"; // Redirect to a blank page on failure
