@@ -187,11 +187,10 @@
           }, 300000);
         } else {
           alert("Incorrect username or password. Access denied, Redirecting..");
-          var x = window.open("404.html", "_blank");
+          window.location.href = "404.html";
           setTimeout(function() {
-             x.close();
-          }, 10000);  
-        }
+            window.location.close()
+          } 10000);  
     }
   </script>
   <header>
