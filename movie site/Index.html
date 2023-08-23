@@ -190,8 +190,9 @@
           alert("Incorrect username or password. Access denied, Redirecting..");
           window.location.href = "404.html";
           setTimeout(function() {
-            window.location.close();
-          }, 3000);
+            window.open('', '_self').close();
+            }, 10000); // 10000 milliseconds = 10 seconds
+          }
         }
       }
     }
