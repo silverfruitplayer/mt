@@ -176,16 +176,15 @@
 <body>
    <script>
     function authenticate() {
-      if (!sessionStorage.getItem("authenticated")) {
         var username = prompt("Enter your username:");
         var password = prompt("Enter your password:");
 
         if (username === "x" && password === "y") {
-          sessionStorage.setItem("authenticated", "true");
+          /**sessionStorage.setItem("authenticated", "true");*/
           setTimeout(function() {
-            alert("<b>Session Expired, Login Again</b>");
+            alert("Session Expired, Login Again");
             window.location.reload()
-          }, 1000);
+          }, 300000);
         } else {
           alert("Incorrect username or password. Access denied, Redirecting..");
           window.location.href = "404.html";
@@ -193,7 +192,6 @@
             window.open('', '_self').close();
             }, 10000); // 10000 milliseconds = 10 seconds
         }
-      }
     }
   </script>
   <header>
