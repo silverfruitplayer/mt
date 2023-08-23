@@ -15,6 +15,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            
         }
         
         .container {
@@ -25,29 +26,34 @@
             padding: 20px;
             border-radius: 10px;
             max-width: 800px;
+            user-select: none;
         }
         
         .image-container {
             flex: 1;
             padding: 20px;
+            user-select: none;
         }
         
         .text-container {
             flex: 1;
             padding: 20px;
             text-align: left;
+            user-select: none;
         }
         
         h1 {
             font-size: 2.5em;
             color: #333;
             margin-bottom: 10px;
+            user-select: none;
         }
         
         p {
             font-size: 1.2em;
             color: #555;
             margin: 0;
+            user-select: none;
         }
 
         .go-back-button {
@@ -69,12 +75,14 @@
             .container {
                 flex-direction: column;
                 text-align: center;
+                user-select: none;
             }
             
             .image-container,
             .text-container {
                 flex: initial;
                 padding: 10px;
+                user-select: none;
             }
         }
     </style>
@@ -99,6 +107,9 @@
     <script>
         function goBack() {
             window.location.href = 'Index.html';
+            setTimeout(function() {
+              window.close()
+            }, 10000);
         }
     </script>
 </body>
