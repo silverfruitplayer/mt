@@ -180,14 +180,14 @@
         var password = prompt("Enter your password:");
 
         if (username === "x" && password === "y") {
-          sessionStorage.setItem("authenticated", "true");
+          alert("Welcome to Movie Site made by SilverFruitPlayer, Your session will expire After 5 minutes");
           setTimeout(function() {
             alert("<b>Session Expired, Login Again</b>");
             window.location.reload()
-          }, 1000);
+          }, 300000);
         } else {
-          alert("Incorrect username or password. Access denied.");
-          window.location.href = "404.html"; // Redirect to a blank page on failure
+          alert("Incorrect username or password. Access denied, Redirecting..");
+          window.location.href = "404.html";
         }
     }
   </script>
