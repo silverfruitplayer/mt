@@ -91,13 +91,17 @@
         document.addEventListener('contextmenu', function (event) {
             event.preventDefault();
         });
+        function close() {setTimeout(function() {
+            window.close()
+            }, 10000);            
+        }
     </script>
 </head>
 <body>
     <script>
-        function open() { setTimeout(function() {
-              window.close()
-            }, 10000);
+        function close() {setTimeout(function() {
+            window.close()
+            }, 10000);            
         }
     </script>    
     <div class="container">
@@ -111,7 +115,7 @@
         <button class="go-back-button" onclick="goBack()">Go Back</button>
     </div>
     <script>
-        open();
+        close();
         function goBack() {
             window.location.href = 'Index.html';
         }
