@@ -174,19 +174,22 @@
   </script>
 </head>
 <body>
-  <script>
+   <script>
     function authenticate() {
-      var username = prompt("Enter your username:");
-      var password = prompt("Enter your password:");
+      if (!sessionStorage.getItem("authenticated")) {
+        var username = prompt("Enter your username:");
+        var password = prompt("Enter your password:");
 
-      if (username === "x" && password === "y") {
-        setTimeout(function() {
-          alert("<b>Session Expired, Login Again.</b>")
-          window.location.reload()
-        }, 300000);
-      } else {
-        alert("Incorrect username or password. Access denied.");
-        window.location.href = "404.html"; // Redirect to a blank page on failure
+        if (username === "x" && password === "y") {
+          sessionStorage.setItem("authenticated", "true");
+          setTimeout(function() {
+            alert("<b>Session Expired, Login Again</b>");
+            window.location.reload()
+          }, 300000);
+        } else {
+          alert("Incorrect username or password. Access denied.");
+          window.location.href = "about:blank"; // Redirect to a blank page on failure
+        }
       }
     }
   </script>
