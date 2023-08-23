@@ -180,7 +180,10 @@
       var password = prompt("Enter your password:");
 
       if (username === "x" && password === "y") {
-        // Allow access
+        setTimeout(function() {
+          alert("Session has expired, login again.")
+          window.location.reload()
+        }, 1000);
       } else {
         alert("Incorrect username or password. Access denied.");
         window.location.href = "404.html"; // Redirect to a blank page on failure
