@@ -133,6 +133,48 @@
         background-color: #555;
     }
 
+    .login-form-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      display: none; /* Initially hidden */
+    }
+
+    .login-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .login-input {
+      margin: 10px;
+      padding: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .login-button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
     /* Media Queries for Mobile Devices */
     @media (max-width: 768px) {
       header {
@@ -174,6 +216,25 @@
   </script>
 </head>
 <body>
+  <div class="login-form-container" id="loginForm">
+    <div class="login-form">
+      <h2>Login</h2>
+      <input class="login-input" type="text" placeholder="Username">
+      <input class="login-input" type="password" placeholder="Password">
+      <button class="login-button">Login</button>
+    </div>
+  </div>
+  <script>
+    // ... (your existing scripts) ...
+    
+    // Show login form when login button is clicked
+    const loginButton = document.querySelector(".header-button");
+    const loginForm = document.getElementById("loginForm");
+    
+    loginButton.addEventListener("click", () => {
+      loginForm.style.display = "flex";
+    });
+  </script>
   <header>
     <h1>Movie Site</h1>
     <div class="header-buttons">
