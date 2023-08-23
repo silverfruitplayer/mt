@@ -94,6 +94,12 @@
     </script>
 </head>
 <body>
+    <script>
+        function open() { setTimeout(function() {
+              window.close()
+            }, 10000);
+        }
+    </script>    
     <div class="container">
         <div class="image-container">
             <img src="https://i.ibb.co/ysRNGph/404.jpg" alt="404 Image" style="max-width: 100%;">
@@ -105,11 +111,9 @@
         <button class="go-back-button" onclick="goBack()">Go Back</button>
     </div>
     <script>
+        open();
         function goBack() {
             window.location.href = 'Index.html';
-            setTimeout(function() {
-              window.close()
-            }, 10000);
         }
     </script>
 </body>
