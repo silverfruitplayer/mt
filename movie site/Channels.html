@@ -17,12 +17,12 @@
       margin: 20px;
       cursor: pointer;
       transition: transform 0.3s;
-      width: 150px; /* Set the width of the thumbnail */
+      width: 150px;
     }
 
     .thumbnail img {
-      width: 100%; /* Make the image fill the thumbnail */
-      border-radius: 13px; /* Optional: Add border-radius for rounded corners */
+      width: 100%;
+      border-radius: 13px; 
     }
 
     .thumbnail p {
@@ -31,6 +31,12 @@
 
     .thumbnail:hover {
       transform: scale(1.1);
+    }
+
+    @media (max-width: 575px) {
+      .thumbnail {
+        width: 75%; /* Adjust width for smaller screens */
+      }
     }
   </style>
   <title>Channels Area</title>
@@ -61,7 +67,7 @@
     function git(pageUrl) {
         window.location.href = pageUrl;
     }
-  </script>
+</script>
   
 </body>
 </html>
