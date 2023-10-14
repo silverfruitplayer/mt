@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .thumbnail {
+      text-align: center;
+      margin: 20px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.1);
+    }
+  </style>
+  <title>Thumbnail Click Example</title>
+</head>
+<body>
+
+  <div class="thumbnail" onclick="window.location.href='sports.html'">
+    <img src="sports_thumbnail.jpg" alt="Sports">
+    <p>Sports</p>
+  </div>
+
+  <div class="thumbnail" onclick="window.location.href='media.html'">
+    <img src="media_thumbnail.jpg" alt="Media">
+    <p>Media</p>
+  </div>
+
+  <div class="thumbnail" onclick="window.location.href='entertainment.html'">
+    <img src="entertainment_thumbnail.jpg" alt="Entertainment">
+    <p>Entertainment</p>
+  </div>
+
+</body>
+</html>
