@@ -198,7 +198,7 @@
     <h1>Movie Site</h1>
     <div class="header-buttons">
       <button class="header-button" onclick="openPage('huh.html')">Channels</button>
-      <button class="header-button" onclick="openPage('huh2.html')">Movies</button>
+      <button class="header-button" onclick="openPagem('huh2.html')">Movies</button>
       <button class="header-button" onclick="openPageh('huh3.html')">Videos</button>
     </div>
   </header>
@@ -264,7 +264,12 @@
     }
 
     function openPageh(pageUrl) {
-        alert("Page Under Construction, See ya soon!")
+        alert("Under Construction, See ya soon!")
+        window.location.href = "404.html";
+    }
+
+    function openPagem(pageUrl) {
+        alert("Under Development, See ya soon!")
         window.location.href = "404.html";
     }
 
