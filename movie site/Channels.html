@@ -40,13 +40,24 @@
       transform: scale(1.1);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 500px) {
       .thumbnail {
-        flex-direction: column;
-        padding: 40px
-        width: 80%;
-        margin: 10px auto;
+        width: 60%; /* Adjust width for smaller screens */
       }
+
+      /* Set the order for different thumbnails on smaller screens */
+      .thumbnail:nth-child(1) {
+        order: 1; /* Move the first thumbnail to the top */
+      }
+
+      .thumbnail:nth-child(2) {
+        order: 2; /* Move the second thumbnail to the middle */
+      }
+
+      .thumbnail:nth-child(3) {
+        order: 3; /* Move the third thumbnail to the bottom */
+      }
+    }
     }
   </style>
   <title>Channels Area</title>
