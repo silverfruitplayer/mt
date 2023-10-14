@@ -23,6 +23,7 @@
       cursor: pointer;
       transition: transform 0.3s;
       width: 150px;
+      height: 150px;
       user-select: none;
     }
 
@@ -30,6 +31,7 @@
       width: 100%;
       border-radius: 13px;
       user-select: none;
+      object-fit: cover;
     }
 
     .thumbnail p {
@@ -42,8 +44,8 @@
 
     @media (max-width: 600px) {
       .thumbnail {
-        width: 80px; /* Adjust width for smaller screens */
-        order: 1; /* Set the order for all thumbnails to 1 (default order) */
+        width: 80%; /* Adjust width for smaller screens */
+        height: auto; /* Set the order for all thumbnails to 1 (default order) */
       }
     }
   </style>
