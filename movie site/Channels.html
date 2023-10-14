@@ -8,6 +8,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background-image: url('https://e0.pxfuel.com/wallpapers/78/976/desktop-wallpaper-movies-best-background-classic-movie-poster.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      user-select: none;
       height: 100vh;
       margin: 0;
     }
@@ -18,11 +23,13 @@
       cursor: pointer;
       transition: transform 0.3s;
       width: 150px;
+      user-select: none;
     }
 
     .thumbnail img {
       width: 100%;
-      border-radius: 13px; 
+      border-radius: 13px;
+      user-select: none;
     }
 
     .thumbnail p {
@@ -35,7 +42,7 @@
 
     @media (max-width: 500px) {
       .thumbnail {
-        width: 50%; /* Adjust width for smaller screens */
+        width: 35px; /* Adjust width for smaller screens */
       }
     }
   </style>
