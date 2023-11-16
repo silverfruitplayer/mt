@@ -246,6 +246,7 @@
       <input type="text" id="searchInput" placeholder="Search Channels..." oninput="searchVideos()">
       <button id="channelsBtn">This Page (Channels)</button>
       <button id="videosBtn">Open another page (Videos)</button>
+      <button id ="home" onclick="openPage()>Go Home</button>
     </div>
   </div>
   <div class="gallery" id="gallery"></div>
@@ -353,6 +354,10 @@
       function redirectToAnotherPage() {
         window.location.href = 'huh3.html';
       }
+
+      function openPage() {
+        window.location.href = 'Index.html';
+      }  
 
       function searchVideos() {
         var input, filter, gallery, thumbnails, title, i;
