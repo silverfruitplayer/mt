@@ -229,6 +229,7 @@
   <div class="header">
     <h1>Welcome To Channels Window</h1>
     <div class="header-buttons">
+      <input type="text" id="searchInput" placeholder="Search Channels..." oninput="searchVideos()">
       <button id="channelsBtn">This Page (Channels)</button>
       <button id="videosBtn">Open another page (Videos)</button>
     </div>
@@ -338,6 +339,23 @@
       function redirectToAnotherPage() {
         window.location.href = 'huh3.html';
       }
+
+      function searchVideos() {
+        var input, filter, gallery, thumbnails, title, i;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        gallery = document.getElementById('gallery');
+        thumbnails = gallery.getElementsByClassName('thumbnail');
+
+        for (i = 0; i < thumbnails.length; i++) {
+            title = thumbnails[i].getElementsByClassName('title')[0];
+            if (title.textContent.toUpperCase().indexOf(filter) > -1) {
+                thumbnails[i].style.display = '';
+            } else {
+                thumbnails[i].style.display = 'none';
+            }
+        }
+    }
 
       window.addEventListener('popstate', () => {
         const modal = document.querySelector('div');
