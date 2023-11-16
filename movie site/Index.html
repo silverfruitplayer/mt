@@ -197,6 +197,7 @@
   <header>
     <h1>Movie Site</h1>
     <div class="header-buttons">
+      <input type="text" id="searchInput" placeholder="Search...">
       <button class="header-button" onclick="openPage('Channels.html')">Channels</button>
       <button class="header-button" onclick="openPagem('huh2.html')">Movies</button>
       <button class="header-button" onclick="openPageh('huh3.html')">Videos</button>
@@ -258,6 +259,23 @@
 
   <script>
     authenticate();
+
+    function searchMovies() {
+        var input, filter, movieList, movieItems, title, i;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        movieList = document.querySelector('.movie-list');
+        movieItems = movieList.getElementsByClassName('movie-item');
+
+        for (i = 0; i < movieItems.length; i++) {
+            title = movieItems[i].getElementsByTagName('h2')[0];
+            if (title.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                movieItems[i].style.display = '';
+            } else {
+                movieItems[i].style.display = 'none';
+            }
+        }
+    }
     
     function openPage(pageUrl) {
         window.location.href = pageUrl;
