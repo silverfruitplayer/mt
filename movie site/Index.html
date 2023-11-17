@@ -189,8 +189,12 @@
 </head>
 <body>
    <script>
-    function authenticate() {
-        window.location.href = "login.html";
+    function checkAuthentication() {
+        var isAuthenticated = localStorage.getItem('authenticated');
+
+        if (!isAuthenticated) {
+            window.location.href = "login.html";
+        }
     }
   </script>
   <header>
@@ -257,7 +261,7 @@
   </footer>
 
   <script>
-    authenticate();
+    checkAuthentication();
 
     function searchMovies() {
         var input, filter, movieList, movieItems, title, i;
