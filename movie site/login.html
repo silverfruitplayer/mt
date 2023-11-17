@@ -183,19 +183,30 @@
             }
         }
     </style>
-    <script>
-        function validateForm() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
+    <script>   
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
 
-            // Check if the entered username and password match the expected values
-            if (username === "x" && password === "y") {
-                window.location.href = "Index.html"; // Redirect to Index.html
-            } else {
-                window.location.href = "404.html"; // Redirect to 404.html
-            }
+        // Check if the entered username and password match the expected values
+        if (username === "x" && password === "y") {
+            localStorage.setItem('authenticated', 'true'); // Set authentication status to true
+            setTimeout(function () {
+                alert("Session Expired. Please log in again.");
+
+                // Reset the authentication status to false
+                localStorage.setItem('authenticated', 'false');
+
+                // Redirect to login.html
+                window.location.href = "login.html";
+            }, 300000); // 300,000 milliseconds = 5 minutes
+
+            window.location.href = "Index.html"; // Redirect to Index.html
+        } else {
+            window.location.href = "404.html"; // Redirect to 404.html
         }
-    </script>
+    }
+</script>
 </head>
 <body>
     <nav>
