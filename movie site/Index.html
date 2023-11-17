@@ -190,21 +190,7 @@
 <body>
    <script>
     function authenticate() {
-        var username = prompt("Enter your username:");
-        var password = prompt("Enter your password:");
-
-        if (username === "x" && password === "y") {
-          /**sessionStorage.setItem("authenticated", "true");*/
-          setTimeout(function() {
-            alert("Session Expired, Login Again");
-            window.location.reload()
-          }, 300000);
-        } else {
-          alert("Incorrect username or password. Access denied, Redirecting..");
-          window.location.href = "404.html";
-          setTimeout(function() {
-            window.open('', '_self').close();
-            }, 10000); // 10000 milliseconds = 10 seconds
+        window.location.href("login.html")
         }
     }
   </script>
