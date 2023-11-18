@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8bbd0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      user-select: none;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .thumbnail {
+      text-align: center;
+      margin: 20px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      width: 150px;
+      height: 150px;
+      user-select: none;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      border-radius: 13px;
+      user-select: none;
+      object-fit: cover;
+    }
+
+    .thumbnail p {
+      margin: 10px 0 0;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 600px) {
+      .thumbnail {
+        width: 80px; /* Adjust width for smaller screens */
+        height: auto; /* Set the order for all thumbnails to 1 (default order) */
+      }
+    }
+  </style>
+  <title>Channels Area</title>
+</head>
+<body>
+
+  <div class="thumbnail" onclick="openPage('huh.html')">
+    <img src="https://st2.depositphotos.com/4359377/8503/v/950/depositphotos_85032710-stock-illustration-xxx-vector-logo-of-women.jpg" alt="XXX">
+    <p>XXX Channels(Caution)</p>
+  </div>
+
+  <div class="thumbnail" onclick="window.location.href='404.html'">
+    <img src="https://t4.ftcdn.net/jpg/03/02/12/83/360_F_302128359_q6aCwgAvdYZBPF4XSwxXddLPE0h3Kor1.jpg" alt="Sports">
+    <p>Sports</p>
+  </div>
+
+  <div class="thumbnail" onclick="window.location.href='404.html'">
+    <img src="https://cdn2.vectorstock.com/i/1000x1000/05/81/movie-entertainment-production-logo-vector-38310581.jpg" alt="Entertainment">
+    <p>Entertainment</p>
+  </div>
+
+<script>
+    
+    function openPage(pageUrl) {
+        window.location.href = pageUrl;
+    }
+
+    function git(pageUrl) {
+        window.location.href = pageUrl;
+    }
+</script>
+  
+</body>
+</html>

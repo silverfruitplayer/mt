@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Oppenheimer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+  />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("https://e0.pxfuel.com/wallpapers/78/976/desktop-wallpaper-movies-best-background-classic-movie-poster.jpg");
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+    .video-container {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+    }
+    video {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+    }
+    .action-button {
+      margin-top: 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+    .action-button:hover {
+      background-color: #555;
+    }
+  </style>
+  <script>
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+  </script>
+</head>
+<body>
+  <h1>Now Playing</h1>
+  <div class="video-container">
+    <video controls controlsList="nodownload" poster="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2">
+      <source
+        src="https://5e37-18-141-189-178.ngrok-free.app/1587/OPPENHEIMER.mp4?hash=0c40c5"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+    <a
+      class="action-button"
+      href="#"
+      onclick="openWithVideoPlayer()"
+    >
+      Open in Video Player
+    </a>
+    <a
+      class="action-button"
+      href="#"
+      onclick="share()"
+    >
+      Share
+    </a>
+    <script>
+      function openWithVideoPlayer() {
+        const modal = document.createElement("div");
+        modal.style.position = "fixed";
+        modal.style.top = "0";
+        modal.style.left = "0";
+        modal.style.width = "100%";
+        modal.style.height = "100%";
+        modal.style.background = "rgba(0, 0, 0, 0.8)";
+        modal.style.display = "flex";
+        modal.style.alignItems = "center";
+        modal.style.justifyContent = "center";
+        modal.style.color = "#fff";
+        modal.style.fontFamily = "Arial, sans-serif";
+        modal.style.fontSize = "16px";       
+        const instructions = "To watch this video in your preferred media player, copy the link and paste it in the media player app.";
+        const link = "https://5e37-18-141-189-178.ngrok-free.app/1583/JOPORN_NET_17481_480p_mkv.mkv?hash=5514cf";
+        const message = `${instructions}\n\nLink: ${link}`;  
+        modal.textContent = message;
+        document.body.appendChild(modal);
+        modal.addEventListener("click", () => {
+          document.body.removeChild(modal);
+        });    
+      }
+      function share() {
+        if (navigator.share) {
+          navigator.share({
+            url: "https://5e37-18-141-189-178.ngrok-free.app/1587/OPPENHEIMER.mp4?hash=0c40c5",
+            title: "Watch Video: Oppenheimer 1080p"
+          });
+        } else {
+          return;
+        }  
+      }   
+    </script>
+  </div>  
+    <div class="description-container">
+      <h2>Movie Description</h2>
+      <p>
+        Nolan's complex A-bomb biopic has sex, swearing, violence.
+      </p>
+    </div>  
+  </div>
+</body>
+</html>
