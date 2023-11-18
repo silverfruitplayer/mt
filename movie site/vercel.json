@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/login",
+      "destination": "/movie%20site/login.html"
+    },
+    {
+      "source": "/login/*",
+      "destination": "/movie%20site/login.html"
+    }
+  ]
+}
