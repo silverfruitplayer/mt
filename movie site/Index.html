@@ -185,12 +185,7 @@
     src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"
     document.addEventListener('contextmenu', function (event) {
         event.preventDefault();
-        swal({
-          title: "Alert!!",
-          text: "Right Click is disabled for security reasons!",
-          icon: "warning",
-          dangerMode: true,
-        });
+        swal("Alert!!", "Right click is blocked for security reasons!");
     });
   </script>
 </head>
