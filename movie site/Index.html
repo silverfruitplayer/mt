@@ -274,7 +274,14 @@
                 movieItems[i].style.display = 'none';
             }
         }
+      if (resultsfound) {
+        noResultsMessage.style.display = 'none';
+      } else {
+        noResultsMessage.style.display = 'block';
+        noResultsMessage.innerHTML = 'No results found for: ' + filter;
+      }  
     }
+    
     
     function openPage(pageUrl) {
         window.location.href = pageUrl;
