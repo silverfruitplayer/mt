@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad</title>
+</head>
+<body>
+
+    <h1>My Notepad</h1>
+
+    <form id="notepadForm">
+        <label for="note">Type your note:</label><br>
+        <textarea id="note" name="note" rows="4" cols="50"></textarea><br>
+        <button type="button" onclick="saveNote()">Save Note</button>
+    </form>
+
+    <div id="savedNotes">
+        <!-- Display saved notes here -->
+    </div>
+
+    <script>
+        function saveNote() {
+            // Get the value of the note textarea
+            var noteText = document.getElementById('note').value;
+
+            // Create a new paragraph element to display the note
+            var noteElement = document.createElement('p');
+            noteElement.textContent = noteText;
+
+            // Append the note element to the savedNotes div
+            document.getElementById('savedNotes').appendChild(noteElement);
+
+            // Clear the textarea
+            document.getElementById('note').value = '';
+        }
+    </script>
+
+</body>
+</html>
