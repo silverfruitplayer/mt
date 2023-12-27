@@ -20,19 +20,36 @@
     </div>
 
     <script>
+        // Load existing notes from local storage on page load
+        window.onload = function () {
+            loadNotes();
+        };
+
         function saveNote() {
-            // Get the value of the note textarea
             var noteText = document.getElementById('note').value;
+            var notes = JSON.parse(localStorage.getItem('notes')) || [];
 
-            // Create a new paragraph element to display the note
-            var noteElement = document.createElement('p');
-            noteElement.textContent = noteText;
+            notes.push(noteText);
 
-            // Append the note element to the savedNotes div
-            document.getElementById('savedNotes').appendChild(noteElement);
+            localStorage.setItem('notes', JSON.stringify(notes));
 
-            // Clear the textarea
-            document.getElementById('note').value = '';
+            loadNotes(); // Update the displayed notes
+            document.getElementById('note').value = ''; // Clear the textarea
+        }
+
+        function loadNotes() {
+            var notes = JSON.parse(localStorage.getItem('notes')) || [];
+            var notesContainer = document.getElementById('savedNotes');
+
+            // Clear existing notes
+            notesContainer.innerHTML = '';
+
+            // Display each note
+            notes.forEach(function (noteText) {
+                var noteElement = document.createElement('p');
+                noteElement.textContent = noteText;
+                notesContainer.appendChild(noteElement);
+            });
         }
     </script>
 
