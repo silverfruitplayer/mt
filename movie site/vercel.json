@@ -1,12 +1,10 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/login",
-      "destination": "/movie%20site/login.html"
-    },
-    {
-      "source": "/login/*",
-      "destination": "/movie%20site/login.html"
+      "src": "/",
+      "dest": "/movie site/login.html"
+      "handle": "filesystem"
     }
   ]
 }
+
