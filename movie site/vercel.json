@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/movie site/0.html"
+      "dest": "/movie site/$1"
     }
   ]
 }
