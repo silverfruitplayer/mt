@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
-<!--
-  <head>
+<head>
   <script type="module" src="https://unpkg.com/hls-video-element@0.0"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-<head>
   <style>
     /* Material Theming */
     :root {
@@ -57,53 +54,7 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a box shadow for a 3D effect */
       transform: translateZ(0); /* Prevent video flickering in Safari */
     }
-  </style>
-</head>
-<body>
-  <div id="video-container">
-    <div id="video-carousel" class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/anal.m3u8"></hls-video>
-        </div>
-        <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/asian.m3u8"></hls-video>
-        </div>
-        <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/milf.m3u8"></hls-video>
-        </div>
-        <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/pornstar.m3u8"></hls-video>
-        </div>
-        <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/pov.m3u8"></hls-video>
-        </div>
-        <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/russian.m3u8"></hls-video>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    const swiper = new Swiper('#video-carousel', {
-      slidesPerView: 1,
-      loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-  </script>
-</body>
--->
-<head>
-  <title>Video Gallery</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <style>
+
     body {
       margin: 0;
       padding: 0;
@@ -199,7 +150,6 @@
     }
   </style>
 </head>
-  
 <body>
   <div class="header">
     <h1>Video Gallery</h1>
@@ -210,7 +160,6 @@
     </div>
   </div>
   <div class="gallery" id="gallery"></div>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
     const password = prompt('Enter the password to access XXX Area:');
 
@@ -219,45 +168,43 @@
 
       alert("Welcome to XXX Area Enjoy Bruh, kthnxbye.");
 
-      fetch('videos3.json')
-        .then(response => response.json())
-        .then(data => {
-          const gallery = document.getElementById('gallery');
+      const m3u8Links = [
+        'https://cdn21n.xxxbox.me/hls/51000/51974/51974,_144p,_250p,,_720p,.mp4.urlset/master.m3u8?token=exp=1704352935~acl=/*~hmac=9b2f2c49ef122cbcdc7ad5dc364401ad7d07accfcb0dade7c45d72d806ac3c33',
+        // Add more M3U8 links as needed
+      ];
 
-          data.videos.forEach(video => {
-            const thumbnail = document.createElement('div');
-            thumbnail.className = 'thumbnail';
-            thumbnail.addEventListener('click', () => {
-              playVideo(video.url);
-            });
+      const gallery = document.getElementById('gallery');
 
-            const thumbnailImage = document.createElement('img');
-            thumbnailImage.src = video.thumbnail;
-            thumbnail.appendChild(thumbnailImage);
-
-            const title = document.createElement('div');
-            title.className = 'title';
-            title.textContent = video.title;
-            thumbnail.appendChild(title);
-
-            gallery.appendChild(thumbnail);
-          });
-        })
-        .catch(error => {
-          console.error('Error loading videos:', error);
+      m3u8Links.forEach((m3u8Link, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = 'thumbnail';
+        thumbnail.addEventListener('click', () => {
+          playVideo(m3u8Link);
         });
 
+        const thumbnailImage = document.createElement('img');
+        thumbnailImage.src = `https://placeholder.com/300x200?text=Video${index + 1}`; // Replace with actual thumbnails
+        thumbnail.appendChild(thumbnailImage);
+
+        const title = document.createElement('div');
+        title.className = 'title';
+        title.textContent = `Video ${index + 1}`;
+        thumbnail.appendChild(title);
+
+        gallery.appendChild(thumbnail);
+      });
+
       function playVideo(url) {
-         const videoElement = document.createElement('video');
-         videoElement.controls = true;
-         videoElement.style.maxWidth = '50%';
-         videoElement.style.maxHeight = '50%';
+        const videoElement = document.createElement('video');
+        videoElement.controls = true;
+        videoElement.style.maxWidth = '50%';
+        videoElement.style.maxHeight = '50%';
 
         videoElement.src = url;
         videoElement.addEventListener('loadedmetadata', () => {
-        videoElement.play();
-      });
-        
+          videoElement.play();
+        });
+
         const modal = document.createElement('div');
         modal.style.position = 'fixed';
         modal.style.top = '0';
@@ -278,18 +225,18 @@
       }
 
       document.addEventListener('contextmenu', function (event) {
-            event.preventDefault();
-        });
+        event.preventDefault();
+      });
 
       document.addEventListener('DOMContentLoaded', function () {
         const stayBtn = document.getElementById('channelsBtn');
         const openBtn = document.getElementById('videosBtn');
-        const hlsBtn = document.getElementById('hlsBtn')
-        
+        const hlsBtn = document.getElementById('hlsBtn');
+
         stayBtn.addEventListener('click', function () {
-              closeModal();
+          closeModal();
         });
-         
+
         openBtn.addEventListener('click', function () {
           redirect1();
         });
@@ -297,7 +244,7 @@
         hlsBtn.addEventListener('click', function () {
           redirect2();
         });
-        
+
       });
 
       function closeModal(modal, videoElement) {
