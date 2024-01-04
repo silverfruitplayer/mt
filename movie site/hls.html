@@ -233,7 +233,7 @@
    <script>
         const password = prompt('Enter the password to access XXX Area:');
 
-        if (password === 'secured') {
+        if (password === 'hls') {
             // Password is correct, proceed with the page content
 
             alert("Welcome to XXX Area! Enjoy, Bruh. Kthnxbye.");
@@ -270,13 +270,29 @@
                 videoElement.style.maxWidth = '50%';
                 videoElement.style.maxHeight = '50%';
 
-                if (Hls.isSupported()) {
-                    const hls = new Hls();
-                    hls.loadSource(url);
-                    hls.attachMedia(videoElement);
-                } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-                    videoElement.src = url;
-                }
+                const hls = new Hls();
+                hls.loadSource(url);
+                hls.attachMedia(videoElement);
+
+                const levels = hls.levels; // Available video quality levels
+
+                // Create a select element for quality selection
+                const qualitySelector = document.createElement('select');
+                levels.forEach((level, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.text = `${level.width}x${level.height}`;
+                    qualitySelector.appendChild(option);
+                });
+
+                // Event listener for quality change
+                qualitySelector.addEventListener('change', () => {
+                    const selectedLevel = levels[qualitySelector.value];
+                    hls.startLevel = selectedLevel.id;
+                });
+
+                // Append the quality selector to the document
+                document.body.appendChild(qualitySelector);
 
                 videoElement.addEventListener('loadedmetadata', () => {
                     videoElement.play();
@@ -294,7 +310,7 @@
                 modal.style.alignItems = 'center';
 
                 modal.addEventListener('click', () => {
-                    closeModal(modal, videoElement);
+                    closeModal(modal, videoElement, qualitySelector);
                 });
 
                 modal.appendChild(videoElement);
@@ -324,12 +340,18 @@
 
             });
 
-            function closeModal(modal, videoElement) {
+            function closeModal(modal, videoElement, qualitySelector) {
                 modal.remove();
                 videoElement.pause();
                 videoElement.removeAttribute('src');
                 videoElement.load();
+
+                // Remove the quality selector when closing the modal
+                if (qualitySelector) {
+                    qualitySelector.remove();
+                }
             }
+
             function redirect1() {
                 window.location.href = 'huh.html';
             }
@@ -341,7 +363,8 @@
             window.addEventListener('popstate', () => {
                 const modal = document.querySelector('div');
                 const videoElement = document.querySelector('video');
-                closeModal(modal, videoElement);
+                const qualitySelector = document.querySelector('select');
+                closeModal(modal, videoElement, qualitySelector);
             });
         } else {
             // Incorrect password, display an error message or redirect to another page
