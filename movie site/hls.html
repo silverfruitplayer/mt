@@ -230,117 +230,125 @@
   </div>
   <div class="gallery" id="gallery"></div>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <script>
-    const password = prompt('Enter the password to access XXX Area:');
+   <script>
+        const password = prompt('Enter the password to access XXX Area:');
 
-    if (password === 'hls') {
-      // Password is correct, proceed with the page content
+        if (password === 'secured') {
+            // Password is correct, proceed with the page content
 
-      alert("Warning! hls/m3u8 streams are unstable as they are hosted by 3rd party providers. Rest enjoy!");
+            alert("Welcome to XXX Area! Enjoy, Bruh. Kthnxbye.");
 
-      fetch('hlsvid.json')
-        .then(response => response.json())
-        .then(data => {
-          const gallery = document.getElementById('gallery');
+            const m3u8Links = [
+                'https://cdn21n.xxxbox.me/hls/51000/51974/51974,_144p,_250p,,_720p,.mp4.urlset/master.m3u8?token=exp=1704352935~acl=/*~hmac=9b2f2c49ef122cbcdc7ad5dc364401ad7d07accfcb0dade7c45d72d806ac3c33',
+                // Add more M3U8 links as needed
+            ];
 
-          data.videos.forEach(video => {
-            const thumbnail = document.createElement('div');
-            thumbnail.className = 'thumbnail';
-            thumbnail.addEventListener('click', () => {
-              playVideo(video.url);
+            const gallery = document.getElementById('gallery');
+
+            m3u8Links.forEach((m3u8Link, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'thumbnail';
+                thumbnail.addEventListener('click', () => {
+                    playVideo(m3u8Link);
+                });
+
+                const thumbnailImage = document.createElement('img');
+                thumbnailImage.src = `https://placeholder.com/300x200?text=Video${index + 1}`; // Replace with actual thumbnails
+                thumbnail.appendChild(thumbnailImage);
+
+                const title = document.createElement('div');
+                title.className = 'title';
+                title.textContent = `Video ${index + 1}`;
+                thumbnail.appendChild(title);
+
+                gallery.appendChild(thumbnail);
             });
 
-            const thumbnailImage = document.createElement('img');
-            thumbnailImage.src = video.thumbnail;
-            thumbnail.appendChild(thumbnailImage);
+            function playVideo(url) {
+                const videoElement = document.createElement('video');
+                videoElement.controls = true;
+                videoElement.style.maxWidth = '50%';
+                videoElement.style.maxHeight = '50%';
 
-            const title = document.createElement('div');
-            title.className = 'title';
-            title.textContent = video.title;
-            thumbnail.appendChild(title);
+                if (Hls.isSupported()) {
+                    const hls = new Hls();
+                    hls.loadSource(url);
+                    hls.attachMedia(videoElement);
+                } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+                    videoElement.src = url;
+                }
 
-            gallery.appendChild(thumbnail);
-          });
-        })
-        .catch(error => {
-          console.error('Error loading videos:', error);
-        });
+                videoElement.addEventListener('loadedmetadata', () => {
+                    videoElement.play();
+                });
 
-      function playVideo(url) {
-        const videoElement = document.createElement('video');
-        videoElement.controls = true;
-        videoElement.style.maxWidth = '50%';
-        videoElement.style.maxHeight = '50%';
+                const modal = document.createElement('div');
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                modal.style.display = 'flex';
+                modal.style.justifyContent = 'center';
+                modal.style.alignItems = 'center';
 
-        if (Hls.isSupported()) {
-          const hls = new Hls();
-          hls.loadSource(url);
-          hls.attachMedia(videoElement);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            videoElement.play();
-          });
-        } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-          videoElement.src = url;
-          videoElement.addEventListener('loadedmetadata', () => {
-            videoElement.play();
-          });
+                modal.addEventListener('click', () => {
+                    closeModal(modal, videoElement);
+                });
+
+                modal.appendChild(videoElement);
+                document.body.appendChild(modal);
+            }
+
+            document.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const stayBtn = document.getElementById('channelsBtn');
+                const openBtn = document.getElementById('videosBtn');
+                const hlsBtn = document.getElementById('hlsBtn');
+
+                stayBtn.addEventListener('click', function () {
+                    closeModal();
+                });
+
+                openBtn.addEventListener('click', function () {
+                    redirect1();
+                });
+
+                hlsBtn.addEventListener('click', function () {
+                    redirect2();
+                });
+
+            });
+
+            function closeModal(modal, videoElement) {
+                modal.remove();
+                videoElement.pause();
+                videoElement.removeAttribute('src');
+                videoElement.load();
+            }
+            function redirect1() {
+                window.location.href = 'huh.html';
+            }
+
+            function redirect2() {
+                window.location.href = 'hls.html';
+            }
+
+            window.addEventListener('popstate', () => {
+                const modal = document.querySelector('div');
+                const videoElement = document.querySelector('video');
+                closeModal(modal, videoElement);
+            });
         } else {
-          console.error('HLS is not supported');
+            // Incorrect password, display an error message or redirect to another page
+            alert("Incorrect password. Access denied.");
+            // You can redirect to another page using:
+            window.location.href = '404.html';
         }
-
-        const modal = document.createElement('div');
-        modal.style.position = 'fixed';
-        modal.style.top = '0';
-        modal.style.left = '0';
-        modal.style.width = '100%';
-        modal.style.height = '100%';
-        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-        modal.style.display = 'flex';
-        modal.style.justifyContent = 'center';
-        modal.style.alignItems = 'center';
-
-        modal.addEventListener('click', () => {
-          closeModal(modal, videoElement);
-        });
-
-        modal.appendChild(videoElement);
-        document.body.appendChild(modal);
-      }
-
-      document.addEventListener('DOMContentLoaded', function () {
-        const stayBtn = document.getElementById('channelsBtn');
-        const openBtn = document.getElementById('videosBtn');
-        
-        stayBtn.addEventListener('click', function () {
-              closeModal();
-        });
-         
-        openBtn.addEventListener('click', function () {
-          redirectToAnotherPage();
-        });
-      });
-
-      function closeModal(modal, videoElement) {
-        modal.remove();
-        videoElement.pause();
-        videoElement.removeAttribute('src');
-        videoElement.load();
-      }
-      function redirectToAnotherPage() {
-        window.location.href = 'huh3.html';
-      }
-
-      window.addEventListener('popstate', () => {
-        const modal = document.querySelector('div');
-        const videoElement = document.querySelector('video');
-        closeModal(modal, videoElement);
-      });
-    } else {
-      // Incorrect password, display an error message or redirect to another page
-      alert("Incorrect password. Access denied.");
-      // You can redirect to another page using:
-      window.location.href = '404.html';
-    }
-  </script>
+    </script>
 </body>
 </html>
