@@ -263,6 +263,9 @@
 
                 gallery.appendChild(thumbnail);
             });
+            // Will only play the source last in the array //
+
+            const url720p = m3u8Links[m3u8Links.length - 1];
 
             function playVideo(url) {
                 const videoElement = document.createElement('video');
@@ -271,7 +274,8 @@
                 videoElement.style.maxHeight = '50%';
 
                 const hls = new Hls();
-                hls.loadSource(url);
+                hls.loadSource(url720p);
+                //hls.loadSource(url);
                 hls.attachMedia(videoElement);
 
                 const levels = hls.levels; // Available video quality levels
