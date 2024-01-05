@@ -69,53 +69,17 @@
       opacity: 0.8; /* Adjust opacity as needed */
     }
     
-    /* Movie List Styles */
-    .movie-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      user-select: none;
-    }
-    
-    .movie-item {
-      background-color: #333;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      background-color: rgba(34, 34, 34, 0.7);
-      backdrop-filter: blur(5px);
-      transition: transform 0.3s, box-shadow 0.3s;
-      user-select: none;
+    /* Swiper Styles */
+    .swiper {
+        width: 100%;
+        height: auto;
     }
 
-    .movie-item:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    } 
-    
-    .movie-item h2,
-    .movie-item p {
-      color: white;
+    .swiper-slide {
+        width: 100%;
+        height: auto;
     }
 
-    /* Thumbnail Styles */
-    .thumbnail {
-      max-width: 100%;
-      height: auto;
-      width: 200px;
-      height: 150px; 
-      border-radius: 5px;
-      margin-bottom: 10px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      user-select: none;
-    }
-
-    .thumbnail:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-    
     /* Footer Styles */
     footer {
         display: flex;
@@ -164,11 +128,8 @@
         user-select: none;
       }
 
-      .movie-list {
-        padding: 10px;
-      }
-      .movie-item {
-        padding: 10px;
+      .swiper {
+        margin: 10px;
       }
 
       footer {
@@ -202,50 +163,25 @@
     </div>
   </header>
 
-  <div class="movie-list">
-    <div class="movie-item" onclick="openPage('testvideo.html')">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
+  <!-- Swiper Container -->
+  <div class="swiper swiper-initialized swiper-horizontal bannerSwiper pcBannerSwiper w-full h-auto mb-12 swiper-backface-hidden">
+    <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1720.4px, 0px, 0px); transition-delay: 0ms;">
+      <!-- Swiper Slides -->
+      <div class="swiper-slide !w-[88.72vw] !h-[220px] md:!w-[62.5vw] md:!h-[18.62vw] text-clip" data-swiper-slide-index="4" style="margin-right: 20px;">
+        <!-- Swiper Slide Content Goes Here -->
+        <div class="relative cursor-pointer h-full bg-surface block w-full px-[2.78vw] py-[1.94vw] rounded-[24px] overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center rounded-[24px] overflow-hidden bg-[#D5D5D5] dark:bg-[#323339]">
+            <img src="https://image.myshell.ai/cdn-cgi/image/quality=40,format=webp/image/homepage/banner/discord/20231114/pc_3x.png" alt="bot image" class="w-full h-full object-cover rounded-[24px]" style="display: block;">
+          </div>
+          <div class="relative text-white text-left md:max-w-[340px] space-y-[2px] md:space-y-[1.11vw] h-full flex flex-col justify-end items-start">
+            <p class="text-[20px] md:text-[28px] xl:text-[32px] font-bold text-white dark:text-[#F5EBE8] leading-[1.3] ">Discord Forum</p>
+            <p class="text-[14px] min-h-[40px] md:min-h-[5vw]  xl:min-h-[6.94vw] line-clamp-2 xl:line-clamp-3 text-surface-dark dark:text-[#D5D5D5] ">Join our Discord community and connect with other movie enthusiasts. Get recommendations, share your favorites, and participate in discussions.</p>
+            <button class="text-[14px] min-h-[40px] md:min-h-[5vw] xl:min-h-[6.94vw] text-primary bg-white rounded-[8px] px-[3.89vw] xl:px-[3.89vw] md:px-[3.33vw] py-[1.39vw] md:py-[1.39vw] xl:py-[1.67vw]">Join Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Add more swiper slides here -->
     </div>
-    <div class="movie-item" onclick="openPage('testvideo1.html')">
-      <img class="thumbnail" src="https://i.ibb.co/Z2FgQnS/images-3.jpg" alt="Blade Runner">
-      <h2>Blade Runner</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <!-- Add more movie items with thumbnails here -->
   </div>
 
   <footer>
@@ -257,8 +193,7 @@
   </footer>
 
   <script>
-    //checkAuthentication();
-
+    // Remaining script code for searchMovies, openPage, and git functions...
     function searchMovies() {
         var input, filter, movieList, movieItems, title, i;
         input = document.getElementById('searchInput');
@@ -281,7 +216,6 @@
         noResultsMessage.innerHTML = 'No results found for: ' + filter;
       }  
     }
-    
     
     function openPage(pageUrl) {
         window.location.href = pageUrl;
