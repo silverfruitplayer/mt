@@ -68,7 +68,54 @@
       color: #ffffff; /* Placeholder text color */
       opacity: 0.8; /* Adjust opacity as needed */
     }
+    
+    /* Movie List Styles */
+    .movie-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      user-select: none;
+    }
+    
+    .movie-item {
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      background-color: rgba(34, 34, 34, 0.7);
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s, box-shadow 0.3s;
+      user-select: none;
+    }
 
+    .movie-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    } 
+    
+    .movie-item h2,
+    .movie-item p {
+      color: white;
+    }
+
+    /* Thumbnail Styles */
+    .thumbnail {
+      max-width: 100%;
+      height: auto;
+      width: 200px;
+      height: 150px; 
+      border-radius: 5px;
+      margin-bottom: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      user-select: none;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    
     /* Footer Styles */
     footer {
         display: flex;
@@ -117,8 +164,11 @@
         user-select: none;
       }
 
-      .swiper {
-        margin: 10px;
+      .movie-list {
+        padding: 10px;
+      }
+      .movie-item {
+        padding: 10px;
       }
 
       footer {
@@ -152,7 +202,7 @@
     </div>
   </header>
 
-   <div class="movie-list">
+  <div class="movie-list">
     <div class="movie-item" onclick="openPage('testvideo.html')">
       <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
       <h2>Openheimer</h2>
@@ -197,6 +247,7 @@
     </div>
     <!-- Add more movie items with thumbnails here -->
   </div>
+
   <footer>
     <p>&copy; SilverFruitPlayer, All rights reserved.</p>
     <div class="footer-buttons">
@@ -206,7 +257,8 @@
   </footer>
 
   <script>
-    // Remaining script code for searchMovies, openPage, and git functions...
+    //checkAuthentication();
+
     function searchMovies() {
         var input, filter, movieList, movieItems, title, i;
         input = document.getElementById('searchInput');
@@ -229,6 +281,7 @@
         noResultsMessage.innerHTML = 'No results found for: ' + filter;
       }  
     }
+    
     
     function openPage(pageUrl) {
         window.location.href = pageUrl;
