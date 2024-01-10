@@ -261,7 +261,7 @@
   <script>
     //checkAuthentication();
 
-    function() {
+    function heh() {
         var a, b, c, d, e, f, g, h, i, j, k, l, m;
         if (!window.Offline) throw new Error("Offline UI brought in without offline.js");
         b = '<div class="offline-ui"><div class="offline-ui-content">   No Internet Connection.</div></div>', a = '<a href class="offline-ui-retry"></a>', f = function(a) {
@@ -311,7 +311,7 @@
         }, "complete" === document.readyState ? j() : null != document.addEventListener ? document.addEventListener("DOMContentLoaded", j, !1) : (c = document.onreadystatechange, document.onreadystatechange = function() {
             return "complete" === document.readyState && j(), "function" == typeof c ? c.apply(null, arguments) : void 0
         })
-    }.call(this);
+    }.call(heh);
     
 
     function searchMovies() {
