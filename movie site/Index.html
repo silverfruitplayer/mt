@@ -6,6 +6,31 @@
   <title>Movie Site</title>
   <link rel="stylesheet" href="https://github.hubspot.com/offline/themes/offline-theme-default.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/offline-js/2.1.0/offline.min.js"></script>
+  <h1>Network Status</h1>
+  <p id="status">Checking...</p>
+  <script>
+    // Initialize offline.js
+    Offline.options = {
+      checkOnLoad: true,
+      interceptRequests: true,
+      reconnect: true,
+      requests: true,
+    };
+
+    // Listen for online/offline events
+    Offline.on('up', function () {
+      updateStatus('Online');
+    });
+
+    Offline.on('down', function () {
+      updateStatus('Offline');
+    });
+
+    // Function to update status on the page
+    function updateStatus(status) {
+      document.getElementById('status').innerText = 'Status: ' + status;
+    }
+  </script>
   <style>
     /* Global Styles */
     body {
@@ -259,61 +284,7 @@
   </footer>
 
   <script>
-    //checkAuthentication();
-
-    function heh() {
-        var a, b, c, d, e, f, g, h, i, j, k, l, m;
-        if (!window.Offline) throw new Error("Offline UI brought in without offline.js");
-        b = '<div class="offline-ui"><div class="offline-ui-content">   No Internet Connection.</div></div>', a = '<a href class="offline-ui-retry"></a>', f = function(a) {
-            var b;
-            return b = document.createElement("div"), b.innerHTML = a, b.children[0]
-        }, g = e = null, d = function(a) {
-            return k(a), g.className += " " + a
-        }, k = function(a) {
-            return g.className = g.className.replace(new RegExp("(^| )" + a.split(" ").join("|") + "( |$)", "gi"), " ")
-        }, i = {}, h = function(a, b) {
-            return d(a), null != i[a] && clearTimeout(i[a]), i[a] = setTimeout(function() {
-                return k(a), delete i[a]
-            }, 1e3 * b)
-        }, m = function(a) {
-            var b, c, d, e;
-            d = {
-                day: 86400,
-                hour: 3600,
-                minute: 60,
-                second: 1
-            };
-            for (c in d)
-                if (b = d[c], a >= b) return e = Math.floor(a / b), [e, c];
-            return ["now", ""]
-        }, l = function() {
-            var c, h;
-            return g = f(b), document.body.appendChild(g), null != Offline.reconnect && Offline.getOption("reconnect") && (g.appendChild(f(a)), c = g.querySelector(".offline-ui-retry"), h = function(a) {
-                return a.preventDefault(), Offline.reconnect.tryNow()
-            }, null != c.addEventListener ? c.addEventListener("click", h, !1) : c.attachEvent("click", h)), d("offline-ui-" + Offline.state), e = g.querySelector(".offline-ui-content")
-        }, j = function() {
-            return l(), Offline.on("up", function() {
-                return k("offline-ui-down"), d("offline-ui-up"), h("offline-ui-up-2s", 2), h("offline-ui-up-5s", 5)
-            }), Offline.on("down", function() {
-                return k("offline-ui-up"), d("offline-ui-down"), h("offline-ui-down-2s", 2), h("offline-ui-down-5s", 5)
-            }), Offline.on("reconnect:connecting", function() {
-                return d("offline-ui-connecting"), k("offline-ui-waiting")
-            }), Offline.on("reconnect:tick", function() {
-                var a, b, c;
-                return d("offline-ui-waiting"), k("offline-ui-connecting"), a = m(Offline.reconnect.remaining), b = a[0], c = a[1], e.setAttribute("data-retry-in-value", b), e.setAttribute("data-retry-in-unit", c)
-            }), Offline.on("reconnect:stopped", function() {
-                return k("offline-ui-connecting offline-ui-waiting"), e.setAttribute("data-retry-in-value", null), e.setAttribute("data-retry-in-unit", null)
-            }), Offline.on("reconnect:failure", function() {
-                return h("offline-ui-reconnect-failed-2s", 2), h("offline-ui-reconnect-failed-5s", 5)
-            }), Offline.on("reconnect:success", function() {
-                return h("offline-ui-reconnect-succeeded-2s", 2), h("offline-ui-reconnect-succeeded-5s", 5)
-            })
-        }, "complete" === document.readyState ? j() : null != document.addEventListener ? document.addEventListener("DOMContentLoaded", j, !1) : (c = document.onreadystatechange, document.onreadystatechange = function() {
-            return "complete" === document.readyState && j(), "function" == typeof c ? c.apply(null, arguments) : void 0
-        })
-    }.call(heh);
     
-
     function searchMovies() {
         var input, filter, movieList, movieItems, title, i;
         input = document.getElementById('searchInput');
