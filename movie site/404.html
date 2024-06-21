@@ -245,10 +245,11 @@
         async function loginUser(email, password) {
           const user = users.find((user) => user.email === email && user.password === password);
           if (user) {
-            console.log(`User ${email} logged in successfully!`);
+            alert("User ${email} logged in successfully!");
             return user;
           } else {
-            console.log(`User ${email} not found or incorrect password!`);
+            alert("User ${email} not found or incorrect password, Redirecting!");
+            window.location.href = 'error.html';  
             return null;
           }
         }
@@ -277,18 +278,8 @@
                 // Redirect to Index.html
                 window.location.href = 'Index.html';
               } else {
-                // Redirect to 404.html
-              if not (user) {
-                  const createAccountLink = document.getElementById('create-account-link');
-                  createAccountLink.addEventListener('click', (e) => {
-                      e.preventDefault();
-                  const email = prompt('Enter your email address:');
-                  const password = prompt('Enter your password:');
-                  registerUser(email, password).then((newUser) => {
-                      if (newUser) {
-                          console.log(`User ${email} created successfully!`);
-                      }
-                  });                    
+                // Redirect to 404.html  
+                window.location.href = 'error.html';
               }
             });
           });
