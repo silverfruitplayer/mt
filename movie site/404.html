@@ -190,19 +190,6 @@
             }
         }
     </style>
-    <script>
-        function validateForm() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
-            // Check if the entered username and password match the expected values
-            if (username === "x" && password === "y") {
-                window.location.href = "Index.html"; // Redirect to Index.html
-            } else {
-                window.location.href = "404.html"; // Redirect to 404.html
-            }
-        }
-    </script>
 </head>
 <body>
     <nav>
@@ -210,7 +197,7 @@
     </nav>
     <div class="form-wrapper">
         <h2>Sign In</h2>
-        <form onsubmit="validateForm(); return false;">
+        <form>
             <div class="form-control">
                 <input type="text" id="username" required>
                 <label>Username...</label>
@@ -220,9 +207,130 @@
                 <label>Password...</label>
             </div>
             <button type="submit">Login</button>
-                <a href="https://github.com/silverfruitplayer">Need help?</a>
+            <div class="form-help">
+                <a href="#" id="register-link">Need help?</a>
+                <a href="#" id="forgot-password-link">Forgot password?</a>
+                <a href="#" id="create-account-link">Create new account</a>
             </div>
         </form>
     </div>
+
+    <script>
+        const usersJson = 'users.json';
+
+        // Check if users.json file exists, create it if not
+        if (!localStorage.getItem(usersJson)) {
+          localStorage.setItem(usersJson, '[]');
+        }
+
+        // Load users from users.json file
+        let users = JSON.parse(localStorage.getItem(usersJson));
+
+        // Function to register a new user
+        async function registerUser(email, password) {
+          const existingUser = users.find((user) => user.email === email);
+          if (existingUser) {
+            console.log(`User ${email} already exists!`);
+            return null;
+          } else {
+            const newUser = { email, password };
+            users.push(newUser);
+            localStorage.setItem(usersJson, JSON.stringify(users));
+            console.log(`User ${email} created successfully!`);
+            return newUser;
+          }
+        }
+
+        // Function to login a user
+        async function loginUser(email, password) {
+          const user = users.find((user) => user.email === email && user.password === password);
+          if (user) {
+            console.log(`User ${email} logged in successfully!`);
+            return user;
+          } else {
+            console.log(`User ${email} not found or incorrect password!`);
+            return null;
+          }
+        }
+
+        // Function to send forgot password email
+        async function forgotPassword(email) {
+          const user = users.find((user) => user.email === email);
+          if (user) {
+            console.log(`Sending password to ${email}...`);
+            // TO DO: implement email sending logic here
+            alert(`Your password is: ${user.password}`);
+          } else {
+            console.log(`User ${email} not found!`);
+          }
+        }
+
+        // Event listener for form submission
+        document.addEventListener('DOMContentLoaded', () => {
+          const form = document.querySelector('form');
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            loginUser(email, password).then((user) => {
+              if (user) {
+                // Redirect to Index.html
+                window.location.href = 'Index.html';
+              } else {
+                // Redirect to 404.html
+                const createAccount = confirm('Invalid email or password. Do you want to create a new account?');
+                if (createAccount) {
+                  const newEmail = prompt('Enter your email address:');
+                  const newPassword = prompt('Enter your password:');
+                  registerUser(newEmail, newPassword).then((newUser) => {
+                    if (newUser) {
+                    console.log(`User ${newEmail} created successfully!`);
+                    }
+                  });  
+              }
+            });
+          });
+        });
+
+        // Event listener for registration link
+        document.addEventListener('DOMContentLoaded', () => {
+          const registerLink = document.getElementById('register-link');
+          registerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = prompt('Enter your email address:');
+            const password = prompt('Enter your password:');
+            registerUser(email, password).then((newUser) => {
+              if (newUser) {
+                console.log(`User ${email} created successfully!`);
+              }
+            });
+          });
+        });
+
+        // Event listener for forgot password link
+        document.addEventListener('DOMContentLoaded', () => {
+          const forgotPasswordLink = document.getElementById('forgot-password-link');
+          forgotPasswordLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = prompt('Enter your email address:');
+            forgotPassword(email);
+          });
+        });
+
+        // Event listener for create account link
+        document.addEventListener('DOMContentLoaded', () => {
+          const createAccountLink = document.getElementById('create-account-link');
+          createAccountLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = prompt('Enter your email address:');
+            const password = prompt('Enter your password:');
+            registerUser(email, password).then((newUser) => {
+              if (newUser) {
+                alert(`User ${email} created successfully!`);
+              }
+            });
+          });
+        });
+    </script>
 </body>
 </html>
