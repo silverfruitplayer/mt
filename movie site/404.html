@@ -278,7 +278,17 @@
                 window.location.href = 'Index.html';
               } else {
                 // Redirect to 404.html
-                window.location.href = '404.html';
+              if not (user) {
+                  const createAccountLink = document.getElementById('create-account-link');
+                  createAccountLink.addEventListener('click', (e) => {
+                      e.preventDefault();
+                  const email = prompt('Enter your email address:');
+                  const password = prompt('Enter your password:');
+                  registerUser(email, password).then((newUser) => {
+                      if (newUser) {
+                          console.log(`User ${email} created successfully!`);
+                      }
+                  });                    
               }
             });
           });
