@@ -278,15 +278,7 @@
                 window.location.href = 'Index.html';
               } else {
                 // Redirect to 404.html
-                const createAccount = confirm('Invalid email or password. Do you want to create a new account?');
-                if (createAccount) {
-                  const newEmail = prompt('Enter your email address:');
-                  const newPassword = prompt('Enter your password:');
-                  registerUser(newEmail, newPassword).then((newUser) => {
-                    if (newUser) {
-                    console.log(`User ${newEmail} created successfully!`);
-                    }
-                  });  
+                window.location.href = '404.html';
               }
             });
           });
@@ -326,7 +318,7 @@
             const password = prompt('Enter your password:');
             registerUser(email, password).then((newUser) => {
               if (newUser) {
-                alert(`User ${email} created successfully!`);
+                console.log(`User ${email} created successfully!`);
               }
             });
           });
