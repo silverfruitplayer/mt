@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!--
+<!--  
   <head>
   <script type="module" src="https://unpkg.com/hls-video-element@0.0"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -11,7 +11,7 @@
   <style>
     /* Material Theming */
     :root {
-      --swiper-theme-color: #0000; /* Set your primary color here */
+      --swiper-theme-color: #2196f3; /* Set your primary color here */
       --swiper-background-color: #0000; /* Set your background color here */
     }
 
@@ -64,22 +64,13 @@
     <div id="video-carousel" class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/anal.m3u8"></hls-video>
+          <hls-video controls autoplay src="https://i.mjh.nz/SamsungTVPlus/ATBA1000004XC.m3u8"></hls-video>
         </div>
         <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/asian.m3u8"></hls-video>
+          <hls-video controls autoplay src="https://i.mjh.nz/SamsungTVPlus/ATBD800001VA.m3u8"></hls-video>
         </div>
         <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/milf.m3u8"></hls-video>
-        </div>
-        <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/pornstar.m3u8"></hls-video>
-        </div>
-        <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/pov.m3u8"></hls-video>
-        </div>
-        <div class="swiper-slide">
-          <hls-video controls autoplay src="https://cdn.adultiptv.net/russian.m3u8"></hls-video>
+          <hls-video controls autoplay src="https://i.mjh.nz/SamsungTVPlus/ATBC3900002PV.m3u8"></hls-video>
         </div>
       </div>
     </div>
@@ -99,15 +90,15 @@
     });
   </script>
 </body>
--->
+-->  
 <head>
-  <title>Video Gallery</title>
+  <title>NEWS CHANNELS AREA</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-image: url('https://sm.pcmag.com/t/pcmag_uk/photo/default/bbfc-uk-isp-adult-content-filter_zgby.1920.png');
+      background-image: url('https://i.ibb.co/rdx1Bd9/download.png');
       background-size: cover;
       background-position: center;
       font-family: 'Roboto', sans-serif;
@@ -163,167 +154,94 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1; 
-    }
-    .header {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-
-    .header h1 {
-      margin: 0;
-      color: #ffffff;
-    }
-
-    .header-buttons {
-      display: flex;
-    }
-
-    .header-buttons button {
-      margin-left: 10px;
-      padding: 8px 12px;
-      background-color: rgba(0, 0, 0, 0.7);
-      color: #ffffff;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-
-    .header-buttons button:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1;
     }
   </style>
 </head>
-  
 <body>
-  <div class="header">
-    <h1>Video Gallery</h1>
-    <div class="header-buttons">
-      <button id="channelsBtn">This Page (Videos)</button>
-      <button id="videosBtn">Open another page (Channels)</button>
-      <button id="hlsBtn">HLS Section</button>
-    </div>
-  </div>
   <div class="gallery" id="gallery"></div>
+
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    const password = prompt('Enter the password to access XXX Area:');
+    alert("Welcome to News Channels Area!, kthnxbye.");
+    fetch('videos3.json')
+      .then(response => response.json())
+      .then(data => {
+        const gallery = document.getElementById('gallery');
 
-    if (password === 'secured') {
-      // Password is correct, proceed with the page content
-
-      alert("Welcome to XXX Area Enjoy Bruh, kthnxbye.");
-
-      fetch('videos3.json')
-        .then(response => response.json())
-        .then(data => {
-          const gallery = document.getElementById('gallery');
-
-          data.videos.forEach(video => {
-            const thumbnail = document.createElement('div');
-            thumbnail.className = 'thumbnail';
-            thumbnail.addEventListener('click', () => {
-              playVideo(video.url);
-            });
-
-            const thumbnailImage = document.createElement('img');
-            thumbnailImage.src = video.thumbnail;
-            thumbnail.appendChild(thumbnailImage);
-
-            const title = document.createElement('div');
-            title.className = 'title';
-            title.textContent = video.title;
-            thumbnail.appendChild(title);
-
-            gallery.appendChild(thumbnail);
+        data.videos.forEach(video => {
+          const thumbnail = document.createElement('div');
+          thumbnail.className = 'thumbnail';
+          thumbnail.addEventListener('click', () => {
+            playVideo(video.url);
           });
-        })
-        .catch(error => {
-          console.error('Error loading videos:', error);
+
+          const thumbnailImage = document.createElement('img');
+          thumbnailImage.src = video.thumbnail;
+          thumbnail.appendChild(thumbnailImage);
+
+          const title = document.createElement('div');
+          title.className = 'title';
+          title.textContent = video.title;
+          thumbnail.appendChild(title);
+
+          gallery.appendChild(thumbnail);
         });
+      })
+      .catch(error => {
+        console.error('Error loading videos:', error);
+      });
 
-      function playVideo(url) {
-         const videoElement = document.createElement('video');
-         videoElement.controls = true;
-         videoElement.style.maxWidth = '50%';
-         videoElement.style.maxHeight = '50%';
+    function playVideo(url) {
+      const videoElement = document.createElement('video');
+      videoElement.controls = true;
+      videoElement.style.maxWidth = '50%';
+      videoElement.style.maxHeight = '50%';
 
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(videoElement);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          videoElement.play();
+        });
+      } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
         videoElement.src = url;
         videoElement.addEventListener('loadedmetadata', () => {
-        videoElement.play();
-      });
-        
-        const modal = document.createElement('div');
-        modal.style.position = 'fixed';
-        modal.style.top = '0';
-        modal.style.left = '0';
-        modal.style.width = '100%';
-        modal.style.height = '100%';
-        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-        modal.style.display = 'flex';
-        modal.style.justifyContent = 'center';
-        modal.style.alignItems = 'center';
-
-        modal.addEventListener('click', () => {
-          closeModal(modal, videoElement);
+          videoElement.play();
         });
-
-        modal.appendChild(videoElement);
-        document.body.appendChild(modal);
+      } else {
+        console.error('HLS is not supported');
       }
 
-      document.addEventListener('contextmenu', function (event) {
-            event.preventDefault();
-        });
+      const modal = document.createElement('div');
+      modal.style.position = 'fixed';
+      modal.style.top = '0';
+      modal.style.left = '0';
+      modal.style.width = '100%';
+      modal.style.height = '100%';
+      modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+      modal.style.display = 'flex';
+      modal.style.justifyContent = 'center';
+      modal.style.alignItems = 'center';
 
-      document.addEventListener('DOMContentLoaded', function () {
-        const stayBtn = document.getElementById('channelsBtn');
-        const openBtn = document.getElementById('videosBtn');
-        const hlsBtn = document.getElementById('hlsBtn')
-        
-        stayBtn.addEventListener('click', function () {
-              closeModal();
-        });
-         
-        openBtn.addEventListener('click', function () {
-          redirect1();
-        });
-
-        hlsBtn.addEventListener('click', function () {
-          redirect2();
-        });
-        
-      });
-
-      function closeModal(modal, videoElement) {
-        modal.remove();
-        videoElement.pause();
-        videoElement.removeAttribute('src');
-        videoElement.load();
-      }
-      function redirect1() {
-        window.location.href = 'huh.html';
-      }
-
-      function redirect2() {
-        window.location.href = 'hls.html';
-      }
-
-      window.addEventListener('popstate', () => {
-        const modal = document.querySelector('div');
-        const videoElement = document.querySelector('video');
+      const closeButton = document.createElement('div');
+      closeButton.className = 'close-button material-icons';
+      closeButton.textContent = 'close';
+      closeButton.addEventListener('click', () => {
         closeModal(modal, videoElement);
       });
-    } else {
-      // Incorrect password, display an error message or redirect to another page
-      alert("Incorrect password. Access denied.");
-      // You can redirect to another page using:
-      window.location.href = '404.html';
+
+      modal.appendChild(closeButton);
+      modal.appendChild(videoElement);
+      document.body.appendChild(modal);
+    }
+
+    function closeModal(modal, videoElement) {
+      modal.remove();
+      videoElement.pause();
+      videoElement.removeAttribute('src');
+      videoElement.load();
     }
   </script>
 </body>
