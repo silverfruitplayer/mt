@@ -1,0 +1,15 @@
+[
+  {
+    "thumbnail": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2",
+    "title": "Openheimer",
+    "genre": "Action",
+    "year": 2023
+  },
+  {
+    "thumbnail": "https://i.ibb.co/Z2FgQnS/images-3.jpg",
+    "title": "Blade Runner",
+    "genre": "Action",
+    "year": 2023
+  }
+  // Add more movie objects as needed
+]
