@@ -242,7 +242,6 @@
   <script>
     const API_KEY = '13c0e7f8d7msh648387fd80f58f3p10f47cjsna1cad64044ae';
     const MOVIE_IDS = ['tt0111161', 'tt0068646', 'tt0468569', 'tt0071562', 'tt0050083']; // Replace with your movie IDs
-
     async function getMovieThumbnails() {
       const options = {
         method: 'GET',
@@ -253,7 +252,7 @@
       };
 
       MOVIE_IDS.forEach(async (movieId) => {
-        const response = await fetch(`https://movie-tv-music-search-and-download.p.rapidapi.com/movie/imdb_id/${movieId}`, options);
+        const response = await fetch(`https://movie-tv-music-search-and-download.p.rapidapi.com/monthly_top100_movies`, options);
         const data = await response.json();
         const movie = data[0]; // Adjust based on the API response structure
 
