@@ -6,56 +6,215 @@
   <title>Movie Site</title>
   <link rel="stylesheet" href="https://github.hubspot.com/offline/themes/offline-theme-default.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/offline-js/2.1.0/offline.min.js"></script>
+  <script>
+    // Initialize offline.js
+    Offline.options = {
+      checkOnLoad: true,
+      interceptRequests: true,
+      reconnect: true,
+      requests: true,
+    };
+
+    // Listen for online/offline events
+    Offline.on('up', function () {
+      updateStatus('Online');
+    });
+
+    Offline.on('down', function () {
+      updateStatus('Offline');
+    });
+
+    // Function to update status on the page
+    function updateStatus(status) {
+      document.getElementById('status').innerText = 'Status: ' + status;
+    }
+  </script>
   <style>
+    /* Global Styles */
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-image: url('https://e0.pxfuel.com/wallpapers/78/976/desktop-wallpaper-movies-best-background-classic-movie-poster.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        user-select: none;
     }
+    
+    /* Header Styles */
     header {
-      background-color: #333;
-      color: white;
-      padding: 10px;
-      text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(34, 34, 34, 0.7);
+        color: #fff;
+        padding: 20px;
+        backdrop-filter: blur(5px);
+        user-select: none;
     }
+
+    h1 {
+        margin: 0;
+        font-size: 36px;
+    }
+
+    .header-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .header-button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        user-select: none;
+    }
+
+    .header-button:hover {
+        background-color: #555;
+    }
+
+    #searchInput {
+      background-color: rgba(255, 255, 255, 0.3); /* Transparent white background */
+      border: none;
+      border-radius: 20px; /* Rounded corners */
+      padding: 12px; /* Adjust padding as needed */
+      color: #ffffff; /* Text color */
+      margin-top: 12px; /* Adjust margin as needed */
+    }
+
+    #searchInput::placeholder {
+      color: #ffffff; /* Placeholder text color */
+      opacity: 0.8; /* Adjust opacity as needed */
+    }
+    
+    /* Movie List Styles */
     .movie-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
       padding: 20px;
+      user-select: none;
     }
+    
     .movie-item {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      background-color: rgba(34, 34, 34, 0.7);
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s, box-shadow 0.3s;
+      user-select: none;
     }
-    .movie-item img {
+
+    .movie-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    } 
+    
+    .movie-item h2,
+    .movie-item p {
+      color: white;
+    }
+
+    /* Thumbnail Styles */
+    .thumbnail {
       max-width: 100%;
       height: auto;
+      width: 200px;
+      height: 150px; 
       border-radius: 5px;
       margin-bottom: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      user-select: none;
     }
-    .movie-item h2 {
-      font-size: 18px;
-      margin: 10px 0;
+
+    .thumbnail:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
-    .movie-item p {
-      font-size: 14px;
-      color: #666;
-      margin: 5px 0;
-    }
+    
+    /* Footer Styles */
     footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(34, 34, 34, 0.7);
+        color: #fff;
+        padding: 20px;
+        backdrop-filter: blur(5px);
+        user-select: none;
+    }
+      
+    .footer-buttons {
+        display: flex;
+        gap: 10px;
+    }
+   
+    .footer-button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 50px 50px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        user-select: none;
+    }
+
+    .footer-button:hover {
+        background-color: #555;
+    }
+
+    /* Media Queries for Mobile Devices */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        user-select: none;
+      }
+      .header-buttons {
+        flex-direction: column;
+        gap: 5px;
+        user-select: none;
+      }
+
+      .movie-list {
+        padding: 10px;
+      }
+      .movie-item {
+        padding: 10px;
+      }
+
+      footer {
+        flex-direction: column;
+        padding: 10px;
+        user-select: none;
+      }
+      .footer-buttons {
+        flex-direction: column;
+        gap: 5px;
+        user-select: none;
+      }
     }
   </style>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script> 
+    document.addEventListener('contextmenu', function (event) {
+        event.preventDefault();
+    swal("Right Click is Disabled For Security Reasons!");
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -69,7 +228,49 @@
   </header>
 
   <div class="movie-list">
-    <!-- Movie thumbnails will be displayed here -->
+    <div class="movie-item" onclick="openPage('testvideo.html')">
+      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
+      <h2>Openheimer</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 2023</p>
+    </div>
+    <div class="movie-item" onclick="openPage('testvideo1.html')">
+      <img class="thumbnail" src="https://i.ibb.co/Z2FgQnS/images-3.jpg" alt="Blade Runner">
+      <h2>Blade Runner</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 2023</p>
+    </div>
+    <div class="movie-item">
+      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
+      <h2>Openheimer</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 2023</p>
+    </div>
+    <div class="movie-item">
+      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
+      <h2>Openheimer</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 2023</p>
+    </div>
+    <div class="movie-item">
+      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
+      <h2>Openheimer</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 2023</p>
+    </div>
+    <div class="movie-item">
+      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
+      <h2>Openheimer</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 2023</p>
+    </div>
+    <div class="movie-item">
+      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
+      <h2>Openheimer</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 2023</p>
+    </div>
+    <!-- Add more movie items with thumbnails here -->
   </div>
 
   <footer>
@@ -81,59 +282,47 @@
   </footer>
 
   <script>
-    const apiKey = '11b65bd848msh7617f0922a54e5bp15fcb0jsn1d2f5c4ae414';
-    const apiUrl = 'https://imdb-api.com/en/API/SearchMovie/' + apiKey;
-
+    
     function searchMovies() {
-      const input = document.getElementById('searchInput');
-      const filter = input.value.toUpperCase();
-      const movieList = document.querySelector('.movie-list');
+        var input, filter, movieList, movieItems, title, i;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        movieList = document.querySelector('.movie-list');
+        movieItems = movieList.getElementsByClassName('movie-item');
 
-      fetch(apiUrl + '/' + filter)
-      .then(response => response.json())
-      .then(data => {
-          const movies = data.results;
-          movieList.innerHTML = ''; // Clear the movie list container
-
-          movies.forEach(movie => {
-            const movieItem = document.createElement('div');
-            movieItem.className = 'ovie-item';
-            movieItem.onclick = function() {
-              openPage('testvideo.html'); // Replace with your movie page URL
-            };
-
-            const thumbnail = document.createElement('img');
-            thumbnail.className = 'thumbnail';
-            thumbnail.src = movie.image;
-            thumbnail.alt = movie.title;
-
-            const movieTitle = document.createElement('h2');
-            movieTitle.textContent = movie.title;
-
-            movieItem.appendChild(thumbnail);
-            movieItem.appendChild(movieTitle);
-            movieList.appendChild(movieItem);
-          });
-        })
-      .catch(error => console.error(error));
+        for (i = 0; i < movieItems.length; i++) {
+            title = movieItems[i].getElementsByTagName('h2')[0];
+            if (title.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                movieItems[i].style.display = '';
+            } else {
+                movieItems[i].style.display = 'none';
+            }
+        }
+      if (resultsfound) {
+        noResultsMessage.style.display = 'none';
+      } else {
+        noResultsMessage.style.display = 'block';
+        noResultsMessage.innerHTML = 'No results found for: ' + filter;
+      }  
     }
-
+    
+    
     function openPage(pageUrl) {
-      window.location.href = pageUrl;
+        window.location.href = pageUrl;
     }
 
     function openPageh(pageUrl) {
-      alert("Under Construction, See ya soon!")
-      window.location.href = "error.html";
+        alert("Under Construction, See ya soon!")
+        window.location.href = "error.html";
     }
 
     function openPagem(pageUrl) {
-      alert("Under Development, See ya soon!")
-      window.location.href = "error.html";
+        alert("Under Development, See ya soon!")
+        window.location.href = "error.html";
     }
 
     function git(pageUrl) {
-      window.location.href = pageUrl;
+        window.location.href = pageUrl;
     }
   </script>
 </body>
