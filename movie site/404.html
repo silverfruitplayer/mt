@@ -207,6 +207,7 @@
                 <label>Password...</label>
             </div>
             <button type="submit">Login</button>
+            <button role="button" class=" e1ax5wel2 ew97par0 default-ltr-cache-ecqt48 e1ff4m3w2" data-uia="login-toggle-button" type="button">Use a sign-in code</button>
             <div class="form-help">
                 <a href="#" id="register-link">Need help?</a>
                 <a href="#" id="forgot-password-link">Forgot password?</a>
@@ -294,7 +295,7 @@
             const password = prompt('Enter your password:');
             registerUser(email, password).then((newUser) => {
               if (newUser) {
-                console.log(`User ${email} created successfully!`);
+                console.log(`User created successfully!`);
               }
             });
           });
@@ -319,7 +320,7 @@
             const password = prompt('Enter your password:');
             registerUser(email, password).then((newUser) => {
               if (newUser) {
-                console.log(`User ${email} created successfully!`);
+                console.log(`User created successfully!`);
               }
             });
           });
