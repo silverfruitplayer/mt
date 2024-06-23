@@ -1,40 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Movie App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMDb Top 100 Movies</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    .movie-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .movie-item {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .movie-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .movie-item h2 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .movie-item p {
+      font-size: 14px;
+      color: #666;
+      margin: 5px 0;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-    
-    <header>
-        <form  id="form">
-            <input type="text" placeholder="Search" id="search" class="search">
-        </form>
-    </header>
-    <div id="tags"></div>
-    <div id="myNav" class="overlay">
+  <header>
+    <h1>IMDb Top 100 Movies</h1>
+  </header>
 
-        <!-- Button to close the overlay navigation -->
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      
-        <!-- Overlay content -->
-        <div class="overlay-content" id="overlay-content"></div>
-        
-        <a href="javascript:void(0)" class="arrow left-arrow" id="left-arrow">&#8656;</a> 
-        
-        <a href="javascript:void(0)" class="arrow right-arrow" id="right-arrow" >&#8658;</a>
+  <div class="movie-list" id="movie-list">
+    <!-- Movie items will be generated here -->
+  </div>
 
-      </div>
-    <main id="main"></main>
-    <div class="pagination">
-        <div class="page" id="prev">Previous Page</div>
-        <div class="current" id="current">1</div>
-        <div class="page" id="next">Next Page</div>
+  <footer>
+    <p>&copy; Silverfruit all rights reserved</p>
+  </footer>
 
-    </div>
+  <script>
+    const API_KEY = '11b65bd848msh7617f0922a54e5bp15fcb0jsn1d2f5c4ae414';
+    const cache = {};
 
-    <script src="script.js"></script>
+    function getTop100Movies() {
+      const xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+
+      xhr.addEventListener('readystatechange', function () {
+        if (this.readyState === this.DONE) {
+          if (this.status === 200) {
+            const response = JSON.parse(this.responseText);
+            const movies = response.items;
+            displayMovies(movies);
+          } else if (this.status === 429) {
+            handleRateLimit(this);
+          }
+        }
+      });
+
+      xhr.open('GET', 'https://imdb-top-100-movies.p.rapidapi.com/');
+      xhr.setRequestHeader('x-rapidapi-key', API_KEY);
+      xhr.setRequestHeader('x-rapidapi-host', 'imdb-top-100-movies.p.rapidapi.com');
+      xhr.send();
+    }
+
+    function handleRateLimit(xhr) {
+      const retryAfter = xhr.getResponseHeader('Retry-After') || 1; // Default to 1 second if no header
+      const retryInMs = retryAfter * 1000;
+
+      setTimeout(() => {
+        getTop100Movies();
+      }, retryInMs);
+    }
+
+    function displayMovies(movies) {
+      const movieList = document.getElementById('movie-list');
+      movieList.innerHTML = ''; // Clear existing movies
+
+      movies.forEach(movie => {
+        const movieItem = document.createElement('div');
+        movieItem.classList.add('movie-item');
+        movieItem.innerHTML = `
+          <img src="${movie.image}" alt="${movie.title}">
+          <h2>${movie.title}</h2>
+          <p>Year: ${movie.year}</p>
+          <p>Rank: ${movie.rank}</p>
+          <p>IMDb Rating: ${movie.rating}</p>
+        `;
+        movieList.appendChild(movieItem);
+      });
+    }
+
+    getTop100Movies();
+  </script>
 </body>
 </html>
