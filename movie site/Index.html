@@ -6,7 +6,29 @@
   <title>Movie Site</title>
   <link rel="stylesheet" href="https://github.hubspot.com/offline/themes/offline-theme-default.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/offline-js/2.1.0/offline.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    // Initialize offline.js
+    Offline.options = {
+      checkOnLoad: true,
+      interceptRequests: true,
+      reconnect: true,
+      requests: true,
+    };
+
+    // Listen for online/offline events
+    Offline.on('up', function () {
+      updateStatus('Online');
+    });
+
+    Offline.on('down', function () {
+      updateStatus('Offline');
+    });
+
+    // Function to update status on the page
+    function updateStatus(status) {
+      document.getElementById('status').innerText = 'Status: ' + status;
+    }
+  </script>
   <style>
     /* Global Styles */
     body {
@@ -186,6 +208,13 @@
       }
     }
   </style>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script> 
+    document.addEventListener('contextmenu', function (event) {
+        event.preventDefault();
+    swal("Right Click is Disabled For Security Reasons!");
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -198,10 +227,26 @@
     </div>
   </header>
 
-  <div class="movie-list" id="movieList">
-    
-  </div>
-
+  <div class="movie-list">
+    <div class="movie-item" onclick="openPage('testvideo.html')">
+      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
+      <h2>Openheimer</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 2023</p>
+    </div>
+    <div class="movie-item" onclick="openPage('testvideo1.html')">
+      <img class="thumbnail" src="https://i.ibb.co/Z2FgQnS/images-3.jpg" alt="Blade Runner">
+      <h2>Blade Runner</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 2023</p>
+    </div>
+    <div class="movie-item">
+      <img class="thumbnail" src="https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_QL75_UX380_CR0,1,380,562_.jpg" alt="The Shawshank Redemption">
+      <h2>The Shawshank Redemption</h2>
+      <p>Genre: Action</p>
+      <p>Release Year: 1994</p>
+    </div>
+  </div>  
   <footer>
     <p>&copy; SilverFruitPlayer, All rights reserved.</p>
     <div class="footer-buttons">
@@ -211,116 +256,48 @@
   </footer>
 
   <script>
-    // Initialize offline.js
-    Offline.options = {
-      checkOnLoad: true,
-      interceptRequests: true,
-      reconnect: true,
-      requests: true,
-    };
-
-    // Listen for online/offline events
-    Offline.on('up', function () {
-      updateStatus('Online');
-    });
-
-    Offline.on('down', function () {
-      updateStatus('Offline');
-    });
-
-    // Function to update status on the page
-    function updateStatus(status) {
-      document.getElementById('status').innerText = 'Status: ' + status;
-    }
-
-    // Right-click prevention
-    document.addEventListener('contextmenu', function (event) {
-      event.preventDefault();
-      swal("Right Click is Disabled For Security Reasons!");
-    });
-
-    // Function to search movies
+    
     function searchMovies() {
-      var input, filter, movieList, movieItems, title, i;
-      input = document.getElementById('searchInput');
-      filter = input.value.toUpperCase();
-      movieList = document.getElementById('movieList');
-      movieItems = movieList.getElementsByClassName('movie-item');
+        var input, filter, movieList, movieItems, title, i;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        movieList = document.querySelector('.movie-list');
+        movieItems = movieList.getElementsByClassName('movie-item');
 
-      for (i = 0; i < movieItems.length; i++) {
-        title = movieItems[i].getElementsByTagName('h2')[0];
-        if (title.innerHTML.toUpperCase().indexOf(filter) > -1) {
-          movieItems[i].style.display = '';
-        } else {
-          movieItems[i].style.display = 'none';
+        for (i = 0; i < movieItems.length; i++) {
+            title = movieItems[i].getElementsByTagName('h2')[0];
+            if (title.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                movieItems[i].style.display = '';
+            } else {
+                movieItems[i].style.display = 'none';
+            }
         }
-      }
+      if (resultsfound) {
+        noResultsMessage.style.display = 'none';
+      } else {
+        noResultsMessage.style.display = 'block';
+        noResultsMessage.innerHTML = 'No results found for: ' + filter;
+      }  
     }
-
-    // Function to open pages
+    
+    
     function openPage(pageUrl) {
-      window.location.href = pageUrl;
+        window.location.href = pageUrl;
     }
 
     function openPageh(pageUrl) {
-      alert("Under Construction, See ya soon!");
-      window.location.href = "error.html";
+        alert("Under Construction, See ya soon!")
+        window.location.href = "error.html";
     }
 
     function openPagem(pageUrl) {
-      alert("Under Development, See ya soon!");
-      window.location.href = "error.html";
+        alert("Under Development, See ya soon!")
+        window.location.href = "error.html";
     }
 
     function git(pageUrl) {
-      window.location.href = pageUrl;
+        window.location.href = pageUrl;
     }
-
-    // Fetch and display movies from JSON
-    document.addEventListener('DOMContentLoaded', function() {
-      fetch('thumbnail.json')
-        .then(response => response.json())
-        .then(data => {
-          const movieList = document.getElementById('movieList');
-
-          data.forEach(movie => {
-            // Create movie item div
-            const movieItem = document.createElement('div');
-            movieItem.classList.add('movie-item');
-            movieItem.onclick = function() {
-              openPage('testvideo.html'); // Replace with appropriate link
-            };
-
-            // Create thumbnail image
-            const thumbnail = document.createElement('img');
-            thumbnail.classList.add('thumbnail');
-            thumbnail.src = movie.thumbnail;
-            thumbnail.alt = movie.title;
-            movieItem.appendChild(thumbnail);
-
-            // Create title (h2)
-            const title = document.createElement('h2');
-            title.textContent = movie.title;
-            movieItem.appendChild(title);
-
-            // Create genre (p)
-            const genre = document.createElement('p');
-            genre.textContent = 'Genre: ' + movie.genre;
-            movieItem.appendChild(genre);
-
-            // Create release year (p)
-            const releaseYear = document.createElement('p');
-            releaseYear.textContent = 'Release Year: ' + movie.year;
-            movieItem.appendChild(releaseYear);
-
-            // Append movie item to movie list
-            movieList.appendChild(movieItem);
-          });
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
-    });
   </script>
 </body>
 </html>
