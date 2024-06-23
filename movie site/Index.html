@@ -153,12 +153,12 @@
         user-select: none;
     }
       
-    .footer-buttons {
+   .footer-buttons {
         display: flex;
         gap: 10px;
     }
    
-    .footer-button {
+   .footer-button {
         background-color: #333;
         color: #fff;
         border: none;
@@ -170,7 +170,7 @@
         user-select: none;
     }
 
-    .footer-button:hover {
+   .footer-button:hover {
         background-color: #555;
     }
 
@@ -183,16 +183,16 @@
         padding: 10px;
         user-select: none;
       }
-      .header-buttons {
+     .header-buttons {
         flex-direction: column;
         gap: 5px;
         user-select: none;
       }
 
-      .movie-list {
+     .movie-list {
         padding: 10px;
       }
-      .movie-item {
+     .movie-item {
         padding: 10px;
       }
 
@@ -201,7 +201,7 @@
         padding: 10px;
         user-select: none;
       }
-      .footer-buttons {
+     .footer-buttons {
         flex-direction: column;
         gap: 5px;
         user-select: none;
@@ -227,50 +227,8 @@
     </div>
   </header>
 
-  <div class="movie-list">
-    <div class="movie-item" onclick="openPage('testvideo.html')">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item" onclick="openPage('testvideo1.html')">
-      <img class="thumbnail" src="https://i.ibb.co/Z2FgQnS/images-3.jpg" alt="Blade Runner">
-      <h2>Blade Runner</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <div class="movie-item">
-      <img class="thumbnail" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202305/oppenheimer-sixteen_nine.jpg?VersionId=y6ZmLy0ssuyyVDssSc5sVsVP6eDZKhk2" alt="Movie Title 1">
-      <h2>Openheimer</h2>
-      <p>Genre: Action</p>
-      <p>Release Year: 2023</p>
-    </div>
-    <!-- Add more movie items with thumbnails here -->
+  <div class="movie-list" id="movie-list">
+    <!-- Movie items will be generated here -->
   </div>
 
   <footer>
@@ -282,47 +240,63 @@
   </footer>
 
   <script>
-    
-    function searchMovies() {
-        var input, filter, movieList, movieItems, title, i;
-        input = document.getElementById('searchInput');
-        filter = input.value.toUpperCase();
-        movieList = document.querySelector('.movie-list');
-        movieItems = movieList.getElementsByClassName('movie-item');
+    const API_KEY = '1213ee46';
+    const MOVIE_IDS = ['tt0111161', 'tt0068646', 'tt0468569', 'tt0071562', 'tt0050083']; // Replace with your movie IDs
 
-        for (i = 0; i < movieItems.length; i++) {
-            title = movieItems[i].getElementsByTagName('h2')[0];
-            if (title.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                movieItems[i].style.display = '';
-            } else {
-                movieItems[i].style.display = 'none';
-            }
-        }
-      if (resultsfound) {
-        noResultsMessage.style.display = 'none';
-      } else {
-        noResultsMessage.style.display = 'block';
-        noResultsMessage.innerHTML = 'No results found for: ' + filter;
-      }  
+    function getMovieThumbnails() {
+      MOVIE_IDS.forEach((movieId) => {
+        fetch(`http://www.omdbapi.com/?i=${movieId}&apikey=${API_KEY}`)
+         .then(response => response.json())
+         .then(data => {
+            const thumbnailUrl = data.Poster;
+            const movieItem = document.createElement('div');
+            movieItem.className = 'movie-item';
+            movieItem.innerHTML = `
+              <img class="thumbnail" src="${thumbnailUrl}" alt="${data.Title}">
+              <h2>${data.Title}</h2>
+              <p>Genre: ${data.Genre}</p>
+              <p>Release Year: ${data.Year}</p>
+            `;
+            document.getElementById('movie-list').appendChild(movieItem);
+          });
+      });
     }
-    
-    
+
+    getMovieThumbnails();
+
+    function searchMovies() {
+      var input, filter, movieList, movieItems, title, i;
+      input = document.getElementById('searchInput');
+      filter = input.value.toUpperCase();
+      movieList = document.querySelector('.movie-list');
+      movieItems = movieList.getElementsByClassName('movie-item');
+
+      for (i = 0; i < movieItems.length; i++) {
+        title = movieItems[i].getElementsByTagName('h2')[0];
+        if (title.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          movieItems[i].style.display = '';
+        } else {
+          movieItems[i].style.display = 'none';
+        }
+      }
+    }
+
     function openPage(pageUrl) {
-        window.location.href = pageUrl;
+      window.location.href = pageUrl;
     }
 
     function openPageh(pageUrl) {
-        alert("Under Construction, See ya soon!")
-        window.location.href = "error.html";
+      alert("Under Construction, See ya soon!")
+      window.location.href = "error.html";
     }
 
     function openPagem(pageUrl) {
-        alert("Under Development, See ya soon!")
-        window.location.href = "error.html";
+      alert("Under Development, See ya soon!")
+      window.location.href = "error.html";
     }
 
     function git(pageUrl) {
-        window.location.href = pageUrl;
+      window.location.href = pageUrl;
     }
   </script>
 </body>
