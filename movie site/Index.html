@@ -1,127 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMDb Top 100 Movies</title>
+  <title>Movie Site</title>
+  <link rel="stylesheet" href="https://github.hubspot.com/offline/themes/offline-theme-default.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/offline-js/2.1.0/offline.min.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 10px;
-      text-align: center;
-    }
-    .movie-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .movie-item {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .movie-item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
-    .movie-item h2 {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-    .movie-item p {
-      font-size: 14px;
-      color: #666;
-      margin: 5px 0;
-    }
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
+    /* Your CSS styles here */
   </style>
 </head>
 <body>
   <header>
-    <h1>IMDb Top 100 Movies</h1>
+    <h1>Movie Site</h1>
+    <div class="header-buttons">
+      <input type="text" id="searchInput" placeholder="Search Movies..." oninput="searchMovies()">
+      <button class="header-button" onclick="openPage('Channels.html')">Channels</button>
+      <button class="header-button" onclick="openPagem('huh2.html')">Movies</button>
+      <button class="header-button" onclick="openPageh('huh3.html')">Videos</button>
+    </div>
   </header>
 
-  <div class="movie-list" id="movie-list">
-    <!-- Movie items will be generated here -->
+  <div class="movie-list">
+    <!-- Movie thumbnails will be displayed here -->
   </div>
 
   <footer>
-    <p>&copy; Silverfruit all rights reserved</p>
+    <p>&copy; SilverFruitPlayer, All rights reserved.</p>
+    <div class="footer-buttons">
+      <button class="footer-button" onclick="git('https://github.com/silverfruitplayer')">GitHub (SilverFruitPlayer)</button>
+      <button class="footer-button" onclick="openPage('login.html')">Logout</button>
+    </div>
   </footer>
 
   <script>
-    const API_KEY = '11b65bd848msh7617f0922a54e5bp15fcb0jsn1d2f5c4ae414';
-    const cache = {};
+    const apiKey = 'YOUR_API_KEY_HERE';
+    const apiUrl = 'https://imdb-api.com/en/API/SearchMovie/' + apiKey;
 
-    function getTop100Movies() {
-      const xhr = new XMLHttpRequest();
-      xhr.withCredentials = true;
+    function searchMovies() {
+      const input = document.getElementById('searchInput');
+      const filter = input.value.toUpperCase();
+      const movieList = document.querySelector('.movie-list');
 
-      xhr.addEventListener('readystatechange', function () {
-        if (this.readyState === this.DONE) {
-          if (this.status === 200) {
-            const response = JSON.parse(this.responseText);
-            const movies = response.items;
-            displayMovies(movies);
-          } else if (this.status === 429) {
-            handleRateLimit(this);
-          }
-        }
-      });
+      fetch(apiUrl + '/' + filter)
+      .then(response => response.json())
+      .then(data => {
+          const movies = data.results;
+          movieList.innerHTML = ''; // Clear the movie list container
 
-      xhr.open('GET', 'https://imdb-top-100-movies.p.rapidapi.com/');
-      xhr.setRequestHeader('x-rapidapi-key', API_KEY);
-      xhr.setRequestHeader('x-rapidapi-host', 'imdb-top-100-movies.p.rapidapi.com');
-      xhr.send();
+          movies.forEach(movie => {
+            const movieItem = document.createElement('div');
+            movieItem.className = 'ovie-item';
+            movieItem.onclick = function() {
+              openPage('testvideo.html'); // Replace with your movie page URL
+            };
+
+            const thumbnail = document.createElement('img');
+            thumbnail.className = 'thumbnail';
+            thumbnail.src = movie.image;
+            thumbnail.alt = movie.title;
+
+            const movieTitle = document.createElement('h2');
+            movieTitle.textContent = movie.title;
+
+            movieItem.appendChild(thumbnail);
+            movieItem.appendChild(movieTitle);
+            movieList.appendChild(movieItem);
+          });
+        })
+      .catch(error => console.error(error));
     }
 
-    function handleRateLimit(xhr) {
-      const retryAfter = xhr.getResponseHeader('Retry-After') || 1; // Default to 1 second if no header
-      const retryInMs = retryAfter * 1000;
-
-      setTimeout(() => {
-        getTop100Movies();
-      }, retryInMs);
+    function openPage(pageUrl) {
+      window.location.href = pageUrl;
     }
 
-    function displayMovies(movies) {
-      const movieList = document.getElementById('movie-list');
-      movieList.innerHTML = ''; // Clear existing movies
-
-      movies.forEach(movie => {
-        const movieItem = document.createElement('div');
-        movieItem.classList.add('movie-item');
-        movieItem.innerHTML = `
-          <img src="${movie.image}" alt="${movie.title}">
-          <h2>${movie.title}</h2>
-          <p>Year: ${movie.year}</p>
-          <p>Rank: ${movie.rank}</p>
-          <p>IMDb Rating: ${movie.rating}</p>
-        `;
-        movieList.appendChild(movieItem);
-      });
+    function openPageh(pageUrl) {
+      alert("Under Construction, See ya soon!")
+      window.location.href = "error.html";
     }
 
-    getTop100Movies();
+    function openPagem(pageUrl) {
+      alert("Under Development, See ya soon!")
+      window.location.href = "error.html";
+    }
+
+    function git(pageUrl) {
+      window.location.href = pageUrl;
+    }
   </script>
 </body>
 </html>
