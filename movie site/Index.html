@@ -240,38 +240,60 @@
   </footer>
 
   <script>
-    const API_KEY = '13c0e7f8d7msh648387fd80f58f3p10f47cjsna1cad64044ae';
+    const API_KEY = '11b65bd848msh7617f0922a54e5bp15fcb0jsn1d2f5c4ae414';
+    const cache = {};
 
     function getTop100Movies() {
       const xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
+      const url = 'https://movie-tv-music-search-and-download.p.rapidapi.com/monthly_top100_movies';
+      const cacheKey = url;
+
+      if (cache[cacheKey]) {
+        displayMovies(cache[cacheKey]);
+        return;
+      }
 
       xhr.addEventListener('readystatechange', function () {
         if (this.readyState === this.DONE) {
-          const movies = JSON.parse(this.responseText);
-          displayMovies(movies);
+          if (this.status === 200) {
+            const movies = JSON.parse(this.responseText);
+            cache[cacheKey] = movies; // Cache the response
+            displayMovies(movies);
+          } else if (this.status === 429) {
+            handleRateLimit(this);
+          }
         }
       });
 
-      xhr.open('GET', 'https://movie-tv-music-search-and-download.p.rapidapi.com/monthly_top100_movies');
+      xhr.open('GET', url);
       xhr.setRequestHeader('x-rapidapi-key', API_KEY);
       xhr.setRequestHeader('x-rapidapi-host', 'movie-tv-music-search-and-download.p.rapidapi.com');
 
       xhr.send(null);
     }
 
+    function handleRateLimit(xhr) {
+      const retryAfter = xhr.getResponseHeader('Retry-After') || 1; // Default to 1 second if no header
+      const retryInMs = retryAfter * 1000;
+
+      setTimeout(() => {
+        getTop100Movies();
+      }, retryInMs);
+    }
+
     function displayMovies(movies) {
       const movieList = document.getElementById('movie-list');
-      movieList.innerHTML = ''; // Clear previous movie items
+      movieList.innerHTML = ''; // Clear existing movies
 
       movies.forEach(movie => {
         const movieItem = document.createElement('div');
         movieItem.className = 'movie-item';
         movieItem.innerHTML = `
-          <img class="thumbnail" src="${movie.cover}" alt="${movie.title}">
-          <h2>${movie.title}</h2>
+          <img class="thumbnail" src="${movie.img}" alt="${movie.name}">
+          <h2>${movie.name}</h2>
           <p>Genre: ${movie.genre}</p>
-          <p>Release Year: ${movie.year}</p>
+          <p>Release Year: ${movie.release_date.split('-')[0]}</p>
         `;
         movieList.appendChild(movieItem);
       });
