@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8bbd0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      user-select: none;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .thumbnail {
+      text-align: center;
+      margin: 20px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      width: 150px;
+      height: 150px;
+      user-select: none;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      border-radius: 13px;
+      user-select: none;
+      object-fit: cover;
+    }
+
+    .thumbnail p {
+      margin: 10px 0 0;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 600px) {
+      .thumbnail {
+        width: 80px; /* Adjust width for smaller screens */
+        height: auto; /* Set the order for all thumbnails to 1 (default order) */
+      }
+    }
+  </style>
+  <title>Wallpapers Area</title>
+</head>
+<body>
+
+  <div class="thumbnail" onclick="window.location.href='gallery.html'">
+    <img src="https://i.ibb.co/C0pr3XH/image.png" alt="From ARQ API">
+    <p>News</p>
+  </div>
+
+  <div class="thumbnail" onclick="window.location.href='gallery1.html'">
+    <img src="https://cdn2.vectorstock.com/i/1000x1000/05/81/movie-entertainment-production-logo-vector-38310581.jpg" alt="From Pexels">
+    <p>Entertainment</p>
+  </div>
+
+  <div class="thumbnail" onclick="window.location.href='gallery2.html'">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/24-7_News_logo.png" alt="From Alphacoders">
+    <p>News</p>
+  </div>
+
+<script>
+    
+    function openPage(pageUrl) {
+        window.location.href = pageUrl;
+    }
+
+    function git(pageUrl) {
+        window.location.href = pageUrl;
+    }
+</script>
+  
+</body>
+</html>
