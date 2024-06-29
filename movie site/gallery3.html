@@ -269,6 +269,22 @@
                             item.appendChild(imgElement);
                             item.appendChild(titleElement);
                             gallery.appendChild(item);
+                        } else if (post.data.is_video) {
+                            const item = document.createElement('div');
+                            item.classList.add('gallery-item');
+
+                            const videoelement = document.createElement('video');
+                            videoelement.src = post.data.media.reddit_video.fallback_url;
+                            videoelement.alt = post.data.title || "No description";
+                            videoelement.onclick = () => window.open(post.data.url, '_blank');
+
+                            const titleElement = document.createElement('div');
+                            titleElement.classList.add('title');
+                            titleElement.textContent = post.data.title || "No description";
+
+                            item.appendChild(videoelement);
+                            item.appendChild(titleElement);
+                            gallery.appendChild(item);
                         }
                     });
                 } else {
